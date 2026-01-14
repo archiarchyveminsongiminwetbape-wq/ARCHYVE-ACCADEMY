@@ -27,8 +27,8 @@ const Home: React.FC = () => {
   ];
 
   const stats = [
-    { number: '500+', label: 'Étudiants formés' },
-    { number: '20+', label: 'Formations disponibles' },
+    { number: '5+', label: 'Étudiants formés' },
+    { number: '2+', label: 'Formations disponibles' },
     { number: '98%', label: 'Satisfaction' },
     { number: '50+', label: 'Projets réalisés' }
   ];
@@ -97,7 +97,7 @@ const Home: React.FC = () => {
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-6">Prêt à démarrer votre aventure numérique ?</h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto">
-            Rejoignez ARCHYVE ACCADEMY et développez les compétences qui feront de vous un expert en informatique.
+            Rejoignez ARCHYVE ACADEMY et développez les compétences qui feront de vous un expert en informatique.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link 
