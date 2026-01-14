@@ -22,7 +22,7 @@ const Header: React.FC = () => {
               alt="ARCHYVE ACCADEMY Logo" 
               className="h-12 w-12 mr-3"
             />
-            <h1 className="text-2xl md:text-3xl font-bold">ARCHYVE ACCADEMY</h1>
+            <h1 className="text-2xl md:text-3xl font-bold">ARCHYVE ACADEMY</h1>
           </div>
           
           <div className="flex flex-col md:items-end">
