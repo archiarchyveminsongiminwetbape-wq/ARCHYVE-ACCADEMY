@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FaChevronDown, FaChevronUp, FaClock, FaMoneyBillWave, FaCertificate, FaWhatsapp, FaInfoCircle } from 'react-icons/fa';
 import { Formation } from '../../data/formations';
@@ -18,6 +18,15 @@ const FormationCard: React.FC<FormationCardProps> = ({ formation }) => {
   ] as const;
 
   const currentLevel = formation.levels[selectedLevel];
+
+  // Debug pour vérifier que les prix se mettent à jour
+  useEffect(() => {
+    if (formation && currentLevel) {
+      console.log('FormationCard - Niveau sélectionné:', selectedLevel);
+      console.log('FormationCard - Prix du niveau:', currentLevel.price);
+      console.log('FormationCard - Prix avec certification:', formation.certificationPrice + currentLevel.price);
+    }
+  }, [selectedLevel, currentLevel, formation]);
 
   return (
     <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">

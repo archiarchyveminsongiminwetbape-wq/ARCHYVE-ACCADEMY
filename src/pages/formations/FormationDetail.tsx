@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { FaArrowLeft, FaClock, FaMoneyBillWave, FaCertificate, FaWhatsapp, FaCheckCircle, FaUsers, FaLaptop, FaAward, FaEdit } from 'react-icons/fa';
 import { formations } from '../../data/formations';
@@ -8,6 +8,31 @@ const FormationDetail: React.FC = () => {
   const [selectedLevel, setSelectedLevel] = useState<'debutant' | 'intermediaire' | 'avance'>('debutant');
 
   const formation = formations.find(f => f.id === id);
+
+  const levels = [
+    { id: 'debutant', label: 'Débutant', color: 'blue' },
+    { id: 'intermediaire', label: 'Intermédiaire', color: 'green' },
+    { id: 'avance', label: 'Avancé', color: 'purple' }
+  ] as const;
+
+  const currentLevel = formation ? formation.levels[selectedLevel] : null;
+  const totalPrice = currentLevel ? currentLevel.price + (formation?.registrationFee || 0) : 0;
+  const certificationPrice = totalPrice + (formation?.certificationPrice || 0);
+
+  // Gestionnaire de clic pour le changement de niveau
+  const handleLevelChange = (levelId: 'debutant' | 'intermediaire' | 'avance') => {
+    console.log('Changement de niveau vers:', levelId);
+    setSelectedLevel(levelId);
+  };
+
+  // Debug pour vérifier que les prix se mettent à jour
+  useEffect(() => {
+    if (formation && currentLevel) {
+      console.log('Niveau sélectionné:', selectedLevel);
+      console.log('Prix du niveau:', currentLevel.price);
+      console.log('Prix total:', totalPrice);
+    }
+  }, [selectedLevel, currentLevel, totalPrice, formation]);
 
   if (!formation) {
     return (
@@ -19,17 +44,6 @@ const FormationDetail: React.FC = () => {
       </div>
     );
   }
-
-  const levels = [
-    { id: 'debutant', label: 'Débutant', color: 'blue' },
-    { id: 'intermediaire', label: 'Intermédiaire', color: 'green' },
-    { id: 'avance', label: 'Avancé', color: 'purple' }
-  ] as const;
-
-  const currentLevel = formation.levels[selectedLevel];
-
-  const totalPrice = currentLevel.price + formation.registrationFee;
-  const certificationPrice = totalPrice + formation.certificationPrice;
 
   return (
     <div className="py-12 bg-gray-50 min-h-screen">
@@ -64,10 +78,12 @@ const FormationDetail: React.FC = () => {
                 {levels.map((level) => (
                   <button
                     key={level.id}
-                    onClick={() => setSelectedLevel(level.id)}
+                    onClick={() => handleLevelChange(level.id)}
                     className={`px-6 py-3 rounded-full font-medium transition-all ${
                       selectedLevel === level.id
-                        ? `bg-${level.color}-600 text-white shadow-lg transform scale-105`
+                        ? level.color === 'blue' ? 'bg-blue-600 text-white shadow-lg transform scale-105' :
+                          level.color === 'green' ? 'bg-green-600 text-white shadow-lg transform scale-105' :
+                          'bg-purple-600 text-white shadow-lg transform scale-105'
                         : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                     }`}
                   >
@@ -83,7 +99,7 @@ const FormationDetail: React.FC = () => {
                   <FaClock className="text-blue-600 text-2xl mr-3" />
                   <h3 className="font-semibold text-gray-800">Durée</h3>
                 </div>
-                <p className="text-2xl font-bold text-blue-600">{currentLevel.duration}</p>
+                <p className="text-2xl font-bold text-blue-600">{currentLevel?.duration || ''}</p>
               </div>
 
               <div className="bg-green-50 p-6 rounded-lg">
@@ -93,8 +109,8 @@ const FormationDetail: React.FC = () => {
                 </div>
                 <p className="text-2xl font-bold text-green-600">{totalPrice.toLocaleString()} FCFA</p>
                 <p className="text-sm text-gray-600 mt-1">
-                  Formation: {currentLevel.price.toLocaleString()} FCFA<br />
-                  Frais: {formation.registrationFee.toLocaleString()} FCFA
+                  Formation: {currentLevel?.price?.toLocaleString() || 0} FCFA<br />
+                  Frais: {formation?.registrationFee?.toLocaleString() || 0} FCFA
                 </p>
               </div>
 
@@ -105,7 +121,7 @@ const FormationDetail: React.FC = () => {
                 </div>
                 <p className="text-2xl font-bold text-yellow-600">{certificationPrice.toLocaleString()} FCFA</p>
                 <p className="text-sm text-gray-600 mt-1">
-                  +{formation.certificationPrice.toLocaleString()} FCFA
+                  +{formation?.certificationPrice?.toLocaleString() || 0} FCFA
                 </p>
               </div>
             </div>
@@ -114,7 +130,7 @@ const FormationDetail: React.FC = () => {
               <div>
                 <h3 className="text-xl font-bold text-gray-800 mb-4">Contenu de la formation</h3>
                 <div className="space-y-3">
-                  {currentLevel.details.map((detail, index) => (
+                  {currentLevel?.details?.map((detail, index) => (
                     <div key={index} className="flex items-start">
                       <FaCheckCircle className="text-green-500 mt-1 mr-3 flex-shrink-0" />
                       <span className="text-gray-700">{detail}</span>
