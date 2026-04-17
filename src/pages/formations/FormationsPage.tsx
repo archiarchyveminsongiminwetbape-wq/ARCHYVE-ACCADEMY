@@ -10,8 +10,7 @@ const FormationsPage: React.FC = () => {
   
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
-  const [selectedLevel, setSelectedLevel] = useState('all');
-  const [selectedPriceRange, setSelectedPriceRange] = useState('all');
+    const [selectedPriceRange, setSelectedPriceRange] = useState('all');
 
   // Filtrer les formations
   const filteredFormations = useMemo(() => {
@@ -46,12 +45,11 @@ const FormationsPage: React.FC = () => {
       
       return matchesSearch && matchesCategory && matchesLevel && matchesPrice;
     });
-  }, [searchQuery, selectedCategory, selectedLevel, selectedPriceRange]);
+  }, [searchQuery, selectedCategory, selectedPriceRange]);
 
   const handleSearch = (query: string) => setSearchQuery(query);
   const handleCategoryFilter = (category: string) => setSelectedCategory(category);
-  const handleLevelFilter = (level: string) => setSelectedLevel(level);
-  const handlePriceFilter = (priceRange: string) => setSelectedPriceRange(priceRange);
+    const handlePriceFilter = (priceRange: string) => setSelectedPriceRange(priceRange);
 
   return (
     <div className="py-12 bg-gray-50 min-h-screen">
@@ -94,7 +92,6 @@ const FormationsPage: React.FC = () => {
         <SearchFilters
           onSearch={handleSearch}
           onCategoryFilter={handleCategoryFilter}
-          onLevelFilter={handleLevelFilter}
           onPriceFilter={handlePriceFilter}
         />
 
@@ -134,7 +131,6 @@ const FormationsPage: React.FC = () => {
                 onClick={() => {
                   setSearchQuery('');
                   setSelectedCategory('all');
-                  setSelectedLevel('all');
                   setSelectedPriceRange('all');
                 }}
                 className="text-blue-600 hover:text-blue-800 font-medium"

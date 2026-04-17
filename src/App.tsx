@@ -3,8 +3,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { FaWhatsapp, FaEnvelope } from 'react-icons/fa';
 import Layout from './components/layout/Layout';
 import Home from './pages/Home';
-import AboutPage from './pages/AboutPage';
-import ContactPage from './pages/ContactPage';
 import FAQPage from './pages/FAQPage';
 import FormationsPage from './pages/formations/FormationsPage';
 import FormationDetail from './pages/formations/FormationDetail';
@@ -98,8 +96,8 @@ function App() {
       <Layout>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="/faq" element={<FAQPage />} />
           <Route path="/courses" element={<FormationsPage />} />
           <Route path="/courses/:id" element={<FormationDetail />} />

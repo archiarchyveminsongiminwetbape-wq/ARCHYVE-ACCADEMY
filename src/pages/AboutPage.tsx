@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { FaGraduationCap, FaUsers, FaAward, FaClock, FaBullseye, FaHandshake, FaLightbulb, FaRocket } from 'react-icons/fa';
+import { FaGraduationCap, FaUsers, FaAward, FaBullseye, FaHandshake, FaLightbulb, FaRocket } from 'react-icons/fa';
 import '../styles/components.css';
 
 const AboutPage: React.FC = () => {

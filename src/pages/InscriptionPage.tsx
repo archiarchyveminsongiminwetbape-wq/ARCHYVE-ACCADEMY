@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { FaArrowLeft, FaUser, FaEnvelope, FaPhone, FaGraduationCap, FaWhatsapp, FaCheckCircle, FaExclamationTriangle, FaDatabase, FaChartBar, FaCreditCard, FaCalendarAlt } from 'react-icons/fa';
+import { FaArrowLeft, FaUser, FaEnvelope, FaPhone, FaGraduationCap, FaWhatsapp, FaCreditCard, FaCalendarAlt } from 'react-icons/fa';
 import { formations } from '../data/formations';
-import GoogleFormsIntegration from '../components/GoogleFormsIntegration';
-import StorageManager from '../utils/storageManager';
 import '../styles/components.css';
 
 const InscriptionPage: React.FC = () => {
@@ -14,9 +12,6 @@ const InscriptionPage: React.FC = () => {
     document.title = 'INSCRIPTION | ARCHYVE ACADEMY';
   }, []);
   const [wantsCertification, setWantsCertification] = useState(false);
-  const [submissionStatus, setSubmissionStatus] = useState<'idle' | 'success' | 'error'>('idle');
-  const [errorMessage, setErrorMessage] = useState('');
-  const storageManager = new StorageManager();
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -54,13 +49,9 @@ const InscriptionPage: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setSubmissionStatus('idle');
-    setErrorMessage('');
 
     // Validation des champs
     if (!formData.firstName || !formData.lastName || !formData.email || !formData.phone) {
-      setErrorMessage('Veuillez remplir tous les champs obligatoires');
-      setSubmissionStatus('error');
       setIsSubmitting(false);
       return;
     }
@@ -68,8 +59,6 @@ const InscriptionPage: React.FC = () => {
     // Validation email
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formData.email)) {
-      setErrorMessage('Veuillez entrer une adresse email valide');
-      setSubmissionStatus('error');
       setIsSubmitting(false);
       return;
     }
@@ -77,8 +66,6 @@ const InscriptionPage: React.FC = () => {
     // Validation téléphone
     const phoneRegex = /^[+]?[0-9]{9,15}$/;
     if (!phoneRegex.test(formData.phone.replace(/\s/g, ''))) {
-      setErrorMessage('Veuillez entrer un numéro de téléphone valide');
-      setSubmissionStatus('error');
       setIsSubmitting(false);
       return;
     }
@@ -86,52 +73,6 @@ const InscriptionPage: React.FC = () => {
     setIsSubmitting(false);
   };
 
-  const handleGoogleFormsSuccess = () => {
-    setSubmissionStatus('success');
-    
-    // Sauvegarder localement pour suivi
-    const submissionData = {
-      fullName: `${formData.firstName} ${formData.lastName}`,
-      email: formData.email,
-      phone: formData.phone,
-      formation: formation.title,
-      level: 'Complète',
-      message: `Formation: ${formData.education}\nExpérience: ${formData.experience}\nMotivation: ${formData.motivation}\nCertification: ${wantsCertification ? 'Oui' : 'Non'}\nTotal: ${totalPrice.toLocaleString()} FCFA`
-    };
-
-    storageManager.saveSubmission(submissionData);
-  };
-
-  const handleGoogleFormsError = (error: string) => {
-    setSubmissionStatus('error');
-    setErrorMessage(error);
-  };
-
-  const handleWhatsAppFallback = () => {
-    // Construire le message WhatsApp
-    const message = `Bonjour, je souhaite m'inscrire à la formation ${formation.title}
-
-Informations personnelles:
-- Nom: ${formData.firstName} ${formData.lastName}
-- Email: ${formData.email}
-- Téléphone: ${formData.phone}
-- Formation: ${formation.title}
-- Durée: ${formation.duration}
-- Prix: ${formation.price.toLocaleString()} FCFA
-- Frais d'inscription: ${formation.registrationFee.toLocaleString()} FCFA
-${wantsCertification ? `- Certification: +${formation.certificationPrice.toLocaleString()} FCFA` : ''}
-- Total: ${totalPrice.toLocaleString()} FCFA
-
-Informations complémentaires:
-- Formation: ${formData.education}
-- Expérience: ${formData.experience}
-- Motivation: ${formData.motivation}
-
-Je suis intéressé(e) par cette formation et j'aimerais avoir plus d'informations sur le processus d'inscription. Merci!`;
-
-    // Ouvrir WhatsApp avec le message pré-rempli
-    window.open(`https://wa.me/237657029080?text=${encodeURIComponent(message)}`, '_blank');
-  };
 
   return (
     <div className="py-12 bg-gray-50 min-h-screen">

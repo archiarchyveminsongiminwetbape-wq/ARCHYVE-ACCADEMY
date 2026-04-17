@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FaQuestionCircle, FaChevronDown, FaChevronUp, FaGraduationCap, FaMoneyBillWave, FaClock, FaCertificate, FaUsers, FaLaptop, FaMobileAlt, FaShieldAlt, FaServer, FaDatabase, FaChartBar, FaCreditCard, FaPhone, FaEnvelope, FaWhatsapp, FaCalendarAlt, FaUser, FaTrophy, FaExchangeAlt, FaUndo } from 'react-icons/fa';
+import { FaQuestionCircle, FaChevronDown, FaChevronUp, FaGraduationCap, FaMoneyBillWave, FaClock, FaCertificate, FaLaptop, FaMobileAlt, FaChartBar, FaCreditCard, FaEnvelope, FaWhatsapp, FaCalendarAlt, FaUser, FaTrophy, FaExchangeAlt, FaUndo } from 'react-icons/fa';
 import '../styles/components.css';
 
 const FAQPage: React.FC = () => {

@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { FaArrowLeft, FaClock, FaMoneyBillWave, FaCertificate, FaWhatsapp, FaCheckCircle, FaUsers, FaLaptop, FaAward, FaEdit } from 'react-icons/fa';
 import { formations } from '../../data/formations';
-import { usePageTitle } from '../../hooks/usePageTitle';
 import '../../styles/components.css';
 
 const FormationDetail: React.FC = () => {

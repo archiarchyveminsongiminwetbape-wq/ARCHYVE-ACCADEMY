@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FaLaptopCode, FaMobileAlt, FaShieldAlt, FaServer, FaWhatsapp, FaStar, FaQuoteLeft, FaPhone, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
+import { FaLaptopCode, FaMobileAlt, FaShieldAlt, FaServer, FaPhone, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
 import OptimizedImage from '../components/OptimizedImage';
 import { usePageTitle } from '../hooks/usePageTitle';
 import '../styles/components.css';
@@ -31,16 +31,6 @@ const Home: React.FC = () => {
     }
   ];
 
-  
-  
-  const renderStars = (note: number) => {
-    return Array.from({ length: 5 }, (_, index) => (
-      <FaStar
-        key={index}
-        className={`text-sm ${index < note ? 'text-yellow-400' : 'text-gray-300'}`}
-      />
-    ));
-  };
 
   return (
     <div className="min-h-screen pt-16">

@@ -5,7 +5,7 @@ import '../styles/components.css';
 interface SearchFiltersProps {
   onSearch: (query: string) => void;
   onCategoryFilter: (category: string) => void;
-  onLevelFilter: (level: string) => void;
+  onLevelFilter?: (level: string) => void;
   onPriceFilter: (priceRange: string) => void;
 }
 
@@ -59,7 +59,7 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({
 
   const handleLevelChange = (level: string) => {
     setSelectedLevel(level);
-    onLevelFilter(level);
+    onLevelFilter?.(level);
   };
 
   const handlePriceRangeChange = (priceRange: string) => {
@@ -74,7 +74,7 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({
     setSelectedPriceRange('all');
     onSearch('');
     onCategoryFilter('all');
-    onLevelFilter('all');
+    onLevelFilter?.('all');
     onPriceFilter('all');
   };
 
