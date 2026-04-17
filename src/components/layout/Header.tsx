@@ -1,54 +1,139 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { FaWhatsapp } from 'react-icons/fa';
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { FaBars, FaTimes, FaPhone, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
+import '../../styles/components.css';
 
 const Header: React.FC = () => {
-  const phoneNumbers = [
-    { number: '+237 657029080', label: 'Contact 1' },
-    { number: '+237 620972579', label: 'Contact 2' }
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [location]);
+
+  const navItems = [
+    { path: '/', label: 'Accueil' },
+    { path: '/courses', label: 'Formations' },
+    { path: '/about', label: 'À propos' },
+    { path: '/faq', label: 'FAQ' },
+    { path: '/contact', label: 'Contact' },
   ];
 
-  const handleWhatsAppClick = (phoneNumber: string) => {
-    window.open(`https://wa.me/${phoneNumber.replace(/\D/g, '')}`, '_blank');
-  };
-
+  
   return (
-    <header className="bg-gradient-to-r from-blue-600 to-blue-800 text-white p-4 shadow-lg">
-      <div className="container mx-auto">
-        <div className="flex flex-col md:flex-row md:justify-between md:items-center">
-          <div className="flex items-center mb-4 md:mb-0">
-            <img 
-              src="/logo.jpg" 
-              alt="ARCHYVE ACCADEMY Logo" 
-              className="h-12 w-12 mr-3"
-            />
-            <h1 className="text-2xl md:text-3xl font-bold">ARCHYVE ACADEMY</h1>
-          </div>
-          
-          <div className="flex flex-col md:items-end">
-            <nav className="mb-3">
-              <ul className="flex flex-wrap gap-4 justify-center md:justify-end">
-                <li><Link to="/" className="hover:underline font-medium">Accueil</Link></li>
-                <li><Link to="/courses" className="hover:underline font-medium">Nos Formations</Link></li>
-                <li><Link to="/temoignages" className="hover:underline font-medium">Témoignages</Link></li>
-                <li><Link to="/about" className="hover:underline font-medium">À propos</Link></li>
-                <li><Link to="/contact" className="hover:underline font-medium">Contact</Link></li>
-              </ul>
-            </nav>
-            
-            <div className="flex flex-wrap gap-3 justify-center md:justify-end">
-              {phoneNumbers.map((contact, index) => (
-                <button
-                  key={index}
-                  onClick={() => handleWhatsAppClick(contact.number)}
-                  className="flex items-center bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg transition-colors"
-                >
-                  <FaWhatsapp className="mr-2" />
-                  <span className="hidden sm:inline">{contact.label}:</span> {contact.number}
-                </button>
-              ))}
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      isScrolled ? 'bg-white shadow-lg py-2' : 'bg-white/95 backdrop-blur-sm py-4'
+    }`}>
+      <div className="container mx-auto px-4">
+        <div className="flex justify-between items-center">
+          {/* Logo */}
+          <Link to="/" className="flex items-center space-x-3 group">
+            <div className="relative">
+              <img 
+                src="/logo.jpg" 
+                alt="ARCHYVE ACADEMY" 
+                className="h-10 w-10 rounded-lg transition-transform group-hover:scale-110"
+              />
+              <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-blue-600 rounded-full animate-pulse"></div>
             </div>
+            <div>
+              <h1 className="text-xl md:text-2xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors">
+                ARCHYVE ACADEMY
+              </h1>
+              <p className="text-xs text-gray-600 hidden md:block">Formation Excellence</p>
+            </div>
+          </Link>
+
+          {/* Desktop Navigation */}
+          <nav className="hidden lg:flex items-center space-x-8">
+            {navItems.map((item) => (
+              <Link
+                key={item.path}
+                to={item.path}
+                className={`text-gray-700 hover:text-blue-600 font-medium transition-colors relative group ${
+                  location.pathname === item.path ? 'text-blue-600' : ''
+                }`}
+              >
+                {item.label}
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all"></span>
+              </Link>
+            ))}
+          </nav>
+
+          {/* Desktop CTA */}
+          <div className="hidden lg:flex items-center space-x-4">
+            <a
+              href="tel:+237657029080"
+              className="flex items-center text-gray-700 hover:text-blue-600 transition-colors"
+            >
+              <FaPhone className="mr-2" />
+              <span className="hidden xl:block">+237 657 02 90 80</span>
+            </a>
+            <Link
+              to="/courses"
+              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full font-medium transition-all transform hover:scale-105 shadow-lg"
+            >
+              Découvrir
+            </Link>
           </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
+          >
+            {isMenuOpen ? (
+              <FaTimes className="text-2xl text-gray-700" />
+            ) : (
+              <FaBars className="text-2xl text-gray-700" />
+            )}
+          </button>
+        </div>
+
+        {/* Mobile Menu */}
+        <div className={`lg:hidden transition-all duration-300 overflow-hidden ${
+          isMenuOpen ? 'max-h-96 opacity-100 mt-4' : 'max-h-0 opacity-0'
+        }`}>
+          <nav className="flex flex-col space-y-4 pb-4">
+            {navItems.map((item) => (
+              <Link
+                key={item.path}
+                to={item.path}
+                className={`text-left px-4 py-2 rounded-lg transition-colors ${
+                  location.pathname === item.path 
+                    ? 'bg-blue-50 text-blue-600 font-medium' 
+                    : 'text-gray-700 hover:bg-gray-50'
+                }`}
+              >
+                {item.label}
+              </Link>
+            ))}
+            
+            <div className="border-t pt-4 space-y-3">
+              <a
+                href="tel:+237657029080"
+                className="flex items-center justify-center px-4 py-2 bg-gray-100 rounded-lg text-gray-700 hover:bg-gray-200 transition-colors"
+              >
+                <FaPhone className="mr-2" />
+                +237 657 02 90 80
+              </a>
+              <Link 
+                to="/courses" 
+                className="btn-primary"
+              >
+                Formations
+              </Link>
+            </div>
+          </nav>
         </div>
       </div>
     </header>

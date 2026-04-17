@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FaStar, FaQuoteLeft, FaGraduationCap, FaBriefcase, FaCode } from 'react-icons/fa';
 
 const TemoignagesPage: React.FC = () => {
+  // Définir le titre de la page
+  useEffect(() => {
+    document.title = 'TÉMOIGNAGES | ARCHYVE ACADEMY';
+  }, []);
+  
   const temoignages = [
     {
       id: 1,

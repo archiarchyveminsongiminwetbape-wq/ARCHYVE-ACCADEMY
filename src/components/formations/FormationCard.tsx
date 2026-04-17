@@ -1,146 +1,115 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { FaChevronDown, FaChevronUp, FaClock, FaMoneyBillWave, FaCertificate, FaWhatsapp, FaInfoCircle } from 'react-icons/fa';
+import { FaClock, FaMoneyBillWave, FaCertificate, FaUsers, FaStar } from 'react-icons/fa';
 import { Formation } from '../../data/formations';
+import OptimizedImage from '../OptimizedImage';
+import '../../styles/components.css';
 
 interface FormationCardProps {
   formation: Formation;
 }
 
 const FormationCard: React.FC<FormationCardProps> = ({ formation }) => {
-  const [selectedLevel, setSelectedLevel] = useState<'debutant' | 'intermediaire' | 'avance'>('debutant');
-  const [isDetailsOpen, setIsDetailsOpen] = useState(false);
-
-  const levels = [
-    { id: 'debutant', label: 'Débutant' },
-    { id: 'intermediaire', label: 'Intermédiaire' },
-    { id: 'avance', label: 'Avancé' }
-  ] as const;
-
-  const currentLevel = formation.levels[selectedLevel];
-
-  // Debug pour vérifier que les prix se mettent à jour
-  useEffect(() => {
-    if (formation && currentLevel) {
-      console.log('FormationCard - Niveau sélectionné:', selectedLevel);
-      console.log('FormationCard - Prix du niveau:', currentLevel.price);
-      console.log('FormationCard - Prix avec certification:', formation.certificationPrice + currentLevel.price);
-    }
-  }, [selectedLevel, currentLevel, formation]);
+  const totalPrice = formation.price + formation.registrationFee;
 
   return (
-    <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
-      <div className="p-6">
-        <div className="flex justify-between items-start">
-          <div>
-            <h3 className="text-2xl font-bold text-gray-800 mb-2">{formation.title}</h3>
-            <p className="text-gray-600 mb-4">{formation.description}</p>
-          </div>
-          <span className="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">
+    <div className="formation-card group">
+      {/* Image Header */}
+      <div className="relative h-48 overflow-hidden">
+        <OptimizedImage
+          src={formation.image}
+          alt={formation.title}
+          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+          width={400}
+          height={200}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+        
+        {/* Category Badge */}
+        <div className="absolute top-4 right-4">
+          <span className="bg-white/90 backdrop-blur-sm text-blue-800 text-xs font-medium px-3 py-1 rounded-full">
             {formation.category}
           </span>
         </div>
-
-        <div className="flex flex-wrap gap-2 my-4">
-          {levels.map((level) => (
-            <button
-              key={level.id}
-              onClick={() => setSelectedLevel(level.id)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-                selectedLevel === level.id
-                  ? 'bg-blue-600 text-white'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-              }`}
-            >
-              {level.label}
-            </button>
-          ))}
+        
+        {/* Title Overlay */}
+        <div className="absolute bottom-4 left-4 right-4">
+          <h3 className="text-xl font-bold text-white mb-1">{formation.title}</h3>
+          <p className="text-white/90 text-sm line-clamp-2">{formation.description}</p>
         </div>
-
-        <div className="bg-blue-50 p-4 rounded-lg mb-4">
-          <div className="flex flex-wrap justify-between items-center">
-            <div className="flex items-center text-gray-700 mb-2 sm:mb-0">
-              <FaClock className="mr-2 text-blue-600" />
-              <span>Durée: {currentLevel.duration}</span>
-            </div>
-            <div className="flex items-center text-gray-700">
-              <FaMoneyBillWave className="mr-2 text-green-600" />
-              <span className="font-bold">{currentLevel.price.toLocaleString()} FCFA</span>
-            </div>
-          </div>
-          
-          <div className="mt-2 flex items-center text-gray-700">
-            <FaMoneyBillWave className="mr-2 text-orange-600" />
-            <span>Frais d'inscription: {formation.registrationFee.toLocaleString()} FCFA</span>
-          </div>
-          
-          <div className="mt-3 flex items-center text-gray-700">
-            <FaCertificate className="mr-2 text-yellow-600" />
-            <span>Certification: {(formation.certificationPrice + currentLevel.price).toLocaleString()} FCFA</span>
-          </div>
-        </div>
-
-        <button
-          onClick={() => setIsDetailsOpen(!isDetailsOpen)}
-          className="flex items-center text-blue-600 hover:text-blue-800 font-medium text-sm"
-        >
-          {isDetailsOpen ? (
-            <>
-              <span>Moins de détails</span>
-              <FaChevronUp className="ml-1" />
-            </>
-          ) : (
-            <>
-              <span>Plus de détails</span>
-              <FaChevronDown className="ml-1" />
-            </>
-          )}
-        </button>
-
-        {isDetailsOpen && (
-          <div className="mt-4 pt-4 border-t border-gray-200">
-            <h4 className="font-semibold text-gray-800 mb-2">Contenu de la formation :</h4>
-            <ul className="space-y-2">
-              {currentLevel.details.map((detail, index) => (
-                <li key={index} className="flex items-start">
-                  <span className="text-green-500 mr-2">✓</span>
-                  <span>{detail}</span>
-                </li>
-              ))}
-            </ul>
-            
-            <div className="mt-4 p-4 bg-yellow-50 rounded-lg">
-              <p className="text-sm text-yellow-800">
-                <strong>Certification :</strong> Obtenez une certification reconnue en ajoutant {formation.certificationPrice.toLocaleString()} FCFA au prix de la formation.
-              </p>
-            </div>
-          </div>
-        )}
       </div>
-      
-      <div className="bg-gray-50 px-6 py-4 flex flex-col sm:flex-row gap-3 justify-between items-center">
-        <div className="flex gap-3 flex-wrap">
+
+      {/* Content */}
+      <div className="p-6">
+        {/* Key Info */}
+        <div className="grid grid-cols-2 gap-4 mb-6">
+          <div className="flex items-center text-gray-700">
+            <FaClock className="mr-2 text-blue-600" />
+            <div>
+              <div className="text-xs text-gray-500">Durée</div>
+              <div className="font-medium">{formation.duration}</div>
+            </div>
+          </div>
+          <div className="flex items-center text-gray-700">
+            <FaMoneyBillWave className="mr-2 text-green-600" />
+            <div>
+              <div className="text-xs text-gray-500">Prix</div>
+              <div className="font-medium">{totalPrice.toLocaleString()} FCFA</div>
+            </div>
+          </div>
+        </div>
+
+        
+        {/* Features */}
+        <div className="mb-6">
+          <div className="grid grid-cols-2 gap-3 text-sm">
+            <div className="flex items-center text-gray-600">
+              <FaCertificate className="mr-2 text-yellow-500" />
+              <span>Certification</span>
+            </div>
+            <div className="flex items-center text-gray-600">
+              <FaUsers className="mr-2 text-blue-500" />
+              <span>Mentorat</span>
+            </div>
+            <div className="flex items-center text-gray-600">
+              <FaStar className="mr-2 text-orange-500" />
+              <span>Projets pratiques</span>
+            </div>
+            <div className="flex items-center text-gray-600">
+              <FaUsers className="mr-2 text-green-500" />
+              <span>Support carrière</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Additional Info */}
+        <div className="bg-gray-50 p-4 rounded-lg mb-6">
+          <div className="flex justify-between items-center text-sm text-gray-600">
+            <span>Frais d'inscription: {formation.registrationFee.toLocaleString()} FCFA</span>
+            <span>Certification: +{formation.certificationPrice.toLocaleString()} FCFA</span>
+          </div>
+        </div>
+
+        {/* CTA Buttons */}
+        <div className="flex flex-col gap-3">
           <Link 
             to={`/courses/${formation.id}`}
-            className="flex items-center justify-center bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg font-medium transition-colors"
+            className="btn-primary w-full text-center"
           >
-            <FaInfoCircle className="mr-2" />
-            Voir les détails
+            Voir les détails complets
           </Link>
-          <a 
-            href={`https://wa.me/237657029080?text=Bonjour, je suis intéressé(e) par la formation ${formation.title} (${selectedLevel})`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-lg font-medium transition-colors"
-          >
-            <FaWhatsapp className="mr-2" />
-            S'inscrire
-          </a>
+          
+          <div className="flex items-center justify-between text-xs text-gray-500">
+            <span className="flex items-center">
+              <FaUsers className="mr-1" />
+              Places limitées
+            </span>
+            <span className="flex items-center">
+              <FaStar className="mr-1 text-yellow-500" />
+              4.8/5
+            </span>
+          </div>
         </div>
-        
-        <span className="text-sm text-gray-500">
-          Places limitées
-        </span>
       </div>
     </div>
   );

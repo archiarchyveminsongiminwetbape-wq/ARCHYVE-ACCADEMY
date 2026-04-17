@@ -2,37 +2,24 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { FaArrowLeft, FaClock, FaMoneyBillWave, FaCertificate, FaWhatsapp, FaCheckCircle, FaUsers, FaLaptop, FaAward, FaEdit } from 'react-icons/fa';
 import { formations } from '../../data/formations';
+import { usePageTitle } from '../../hooks/usePageTitle';
+import '../../styles/components.css';
 
 const FormationDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
-  const [selectedLevel, setSelectedLevel] = useState<'debutant' | 'intermediaire' | 'avance'>('debutant');
-
   const formation = formations.find(f => f.id === id);
-
-  const levels = [
-    { id: 'debutant', label: 'Débutant', color: 'blue' },
-    { id: 'intermediaire', label: 'Intermédiaire', color: 'green' },
-    { id: 'avance', label: 'Avancé', color: 'purple' }
-  ] as const;
-
-  const currentLevel = formation ? formation.levels[selectedLevel] : null;
-  const totalPrice = currentLevel ? currentLevel.price + (formation?.registrationFee || 0) : 0;
-  const certificationPrice = totalPrice + (formation?.certificationPrice || 0);
-
-  // Gestionnaire de clic pour le changement de niveau
-  const handleLevelChange = (levelId: 'debutant' | 'intermediaire' | 'avance') => {
-    console.log('Changement de niveau vers:', levelId);
-    setSelectedLevel(levelId);
-  };
-
-  // Debug pour vérifier que les prix se mettent à jour
+  
+  // Définir le titre dynamiquement basé sur la formation
   useEffect(() => {
-    if (formation && currentLevel) {
-      console.log('Niveau sélectionné:', selectedLevel);
-      console.log('Prix du niveau:', currentLevel.price);
-      console.log('Prix total:', totalPrice);
+    if (formation) {
+      document.title = `${formation.title.toUpperCase()} | DÉTAILS | ARCHYVE ACADEMY`;
+    } else {
+      document.title = 'FORMATION NON TROUVÉE | ARCHYVE ACADEMY';
     }
-  }, [selectedLevel, currentLevel, totalPrice, formation]);
+  }, [formation]);
+
+  const totalPrice = formation ? formation.price + formation.registrationFee : 0;
+  const certificationPrice = totalPrice + (formation?.certificationPrice || 0);
 
   if (!formation) {
     return (
@@ -72,34 +59,13 @@ const FormationDetail: React.FC = () => {
           </div>
 
           <div className="p-6 md:p-8">
-            <div className="mb-8">
-              <h2 className="text-2xl font-bold text-gray-800 mb-4">Choisissez votre niveau</h2>
-              <div className="flex flex-wrap gap-3">
-                {levels.map((level) => (
-                  <button
-                    key={level.id}
-                    onClick={() => handleLevelChange(level.id)}
-                    className={`px-6 py-3 rounded-full font-medium transition-all ${
-                      selectedLevel === level.id
-                        ? level.color === 'blue' ? 'bg-blue-600 text-white shadow-lg transform scale-105' :
-                          level.color === 'green' ? 'bg-green-600 text-white shadow-lg transform scale-105' :
-                          'bg-purple-600 text-white shadow-lg transform scale-105'
-                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                    }`}
-                  >
-                    {level.label}
-                  </button>
-                ))}
-              </div>
-            </div>
-
             <div className="grid md:grid-cols-3 gap-6 mb-8">
               <div className="bg-blue-50 p-6 rounded-lg">
                 <div className="flex items-center mb-3">
                   <FaClock className="text-blue-600 text-2xl mr-3" />
                   <h3 className="font-semibold text-gray-800">Durée</h3>
                 </div>
-                <p className="text-2xl font-bold text-blue-600">{currentLevel?.duration || ''}</p>
+                <p className="text-2xl font-bold text-blue-600">{formation.duration}</p>
               </div>
 
               <div className="bg-green-50 p-6 rounded-lg">
@@ -109,8 +75,8 @@ const FormationDetail: React.FC = () => {
                 </div>
                 <p className="text-2xl font-bold text-green-600">{totalPrice.toLocaleString()} FCFA</p>
                 <p className="text-sm text-gray-600 mt-1">
-                  Formation: {currentLevel?.price?.toLocaleString() || 0} FCFA<br />
-                  Frais: {formation?.registrationFee?.toLocaleString() || 0} FCFA
+                  Formation: {formation.price.toLocaleString()} FCFA<br />
+                  Frais: {formation.registrationFee.toLocaleString()} FCFA
                 </p>
               </div>
 
@@ -121,7 +87,7 @@ const FormationDetail: React.FC = () => {
                 </div>
                 <p className="text-2xl font-bold text-yellow-600">{certificationPrice.toLocaleString()} FCFA</p>
                 <p className="text-sm text-gray-600 mt-1">
-                  +{formation?.certificationPrice?.toLocaleString() || 0} FCFA
+                  +{formation.certificationPrice.toLocaleString()} FCFA
                 </p>
               </div>
             </div>
@@ -130,7 +96,7 @@ const FormationDetail: React.FC = () => {
               <div>
                 <h3 className="text-xl font-bold text-gray-800 mb-4">Contenu de la formation</h3>
                 <div className="space-y-3">
-                  {currentLevel?.details?.map((detail, index) => (
+                  {formation.details.map((detail, index) => (
                     <div key={index} className="flex items-start">
                       <FaCheckCircle className="text-green-500 mt-1 mr-3 flex-shrink-0" />
                       <span className="text-gray-700">{detail}</span>
@@ -158,6 +124,131 @@ const FormationDetail: React.FC = () => {
               </div>
             </div>
 
+            {/* Section POUR QUI */}
+            <div className="bg-gradient-to-br from-purple-50 to-blue-50 p-8 rounded-xl border border-purple-200">
+              <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                <div className="w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center mr-3">
+                  <span className="text-white font-bold">?</span>
+                </div>
+                Cette formation est pour vous si...
+              </h3>
+              
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="space-y-4">
+                  <h4 className="font-semibold text-purple-800 mb-3">Profil Idéal</h4>
+                  <div className="space-y-3">
+                    <div className="flex items-start">
+                      <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                        <span className="text-white text-xs">+</span>
+                      </div>
+                      <span className="text-gray-700">Vous souhaitez débuter ou évoluer dans le domaine du numérique</span>
+                    </div>
+                    <div className="flex items-start">
+                      <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                        <span className="text-white text-xs">+</span>
+                      </div>
+                      <span className="text-gray-700">Vous êtes motivé(e) et prêt(e) à investir du temps dans votre formation</span>
+                    </div>
+                    <div className="flex items-start">
+                      <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                        <span className="text-white text-xs">+</span>
+                      </div>
+                      <span className="text-gray-700">Vous voulez acquérir des compétences pratiques et recherchées</span>
+                    </div>
+                    <div className="flex items-start">
+                      <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                        <span className="text-white text-xs">+</span>
+                      </div>
+                      <span className="text-gray-700">Vous cherchez une formation avec un accompagnement personnalisé</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="space-y-4">
+                  <h4 className="font-semibold text-blue-800 mb-3">Objectifs Visés</h4>
+                  <div className="space-y-3">
+                    <div className="flex items-start">
+                      <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                        <span className="text-white text-xs">+</span>
+                      </div>
+                      <span className="text-gray-700">Trouver un emploi dans le secteur du numérique</span>
+                    </div>
+                    <div className="flex items-start">
+                      <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                        <span className="text-white text-xs">+</span>
+                      </div>
+                      <span className="text-gray-700">Lancer votre propre projet digital</span>
+                    </div>
+                    <div className="flex items-start">
+                      <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                        <span className="text-white text-xs">+</span>
+                      </div>
+                      <span className="text-gray-700">Évoluer dans votre poste actuel</span>
+                    </div>
+                    <div className="flex items-start">
+                      <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                        <span className="text-white text-xs">+</span>
+                      </div>
+                      <span className="text-gray-700">Obtenir une certification reconnue</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-6 p-4 bg-white rounded-lg border border-purple-200">
+                <div className="flex items-center text-purple-800">
+                  <div className="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center mr-3">
+                    <span className="text-purple-600 font-bold">!</span>
+                  </div>
+                  <span className="font-medium">
+                    Prérequis : Aucun prérequis spécifique n'est demandé pour le niveau débutant. 
+                    Pour les niveaux intermédiaire et avancé, des connaissances de base sont recommandées.
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Section FAQ */}
+            <div className="bg-gray-50 p-8 rounded-xl">
+              <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">
+                Questions Fréquemment Posées
+              </h3>
+              
+              <div className="space-y-4 max-w-3xl mx-auto">
+                <div className="bg-white p-4 rounded-lg shadow-sm">
+                  <h4 className="font-semibold text-gray-900 mb-2">Quelle est la durée de la formation ?</h4>
+                  <p className="text-gray-600">
+                    La formation dure {formation.duration}. 
+                    Les cours sont dispensés en ligne avec des sessions pratiques chaque semaine.
+                  </p>
+                </div>
+                
+                <div className="bg-white p-4 rounded-lg shadow-sm">
+                  <h4 className="font-semibold text-gray-900 mb-2">Quels sont les prérequis ?</h4>
+                  <p className="text-gray-600">
+                    Pour le niveau débutant, aucun prérequis n'est nécessaire. Pour les niveaux intermédiaire 
+                    et avancé, des connaissances de base en informatique sont recommandées.
+                  </p>
+                </div>
+                
+                <div className="bg-white p-4 rounded-lg shadow-sm">
+                  <h4 className="font-semibold text-gray-900 mb-2">Comment se déroule la certification ?</h4>
+                  <p className="text-gray-600">
+                    À la fin de la formation, vous passez un examen pratique et théorique. 
+                    La certification est reconnue par les entreprises du secteur.
+                  </p>
+                </div>
+                
+                <div className="bg-white p-4 rounded-lg shadow-sm">
+                  <h4 className="font-semibold text-gray-900 mb-2">Y a-t-il un accompagnement après la formation ?</h4>
+                  <p className="text-gray-600">
+                    Oui, nous offrons un support carrière pendant 6 mois après la formation : 
+                    aide à la recherche d'emploi, préparation aux entretiens, et accès à notre réseau.
+                  </p>
+                </div>
+              </div>
+            </div>
+
             <div className="bg-gradient-to-r from-blue-600 to-blue-800 text-white p-8 rounded-xl">
               <div className="text-center">
                 <h3 className="text-2xl font-bold mb-4">Prêt à commencer votre formation ?</h3>
@@ -165,25 +256,25 @@ const FormationDetail: React.FC = () => {
                   Rejoignez des centaines d'étudiants qui ont déjà transformé leur carrière avec nos formations.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Link 
+                  <Link
                     to={`/inscription/${formation.id}`}
-                    className="flex items-center justify-center bg-white text-blue-700 hover:bg-blue-50 px-8 py-3 rounded-lg font-medium transition-colors"
+                    className="btn-outline"
                   >
                     <FaEdit className="mr-2" />
                     Formulaire d'inscription
                   </Link>
                   <a 
-                    href={`https://wa.me/237657029080?text=Bonjour, je suis intéressé(e) par la formation ${formation.title} (${selectedLevel})`}
+                    href={`https://wa.me/237657029080?text=Bonjour, je suis intéressé(e) par la formation ${formation.title}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center bg-green-500 hover:bg-green-600 text-white px-8 py-3 rounded-lg font-medium transition-colors"
+                    className="btn-success"
                   >
                     <FaWhatsapp className="mr-2" />
                     WhatsApp direct
                   </a>
                   <a 
                     href="tel:+237657029080"
-                    className="flex items-center justify-center bg-white text-blue-700 hover:bg-blue-50 px-8 py-3 rounded-lg font-medium transition-colors"
+                    className="btn-outline"
                   >
                     Appeler pour plus d'infos
                   </a>

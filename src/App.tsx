@@ -3,10 +3,12 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { FaWhatsapp, FaEnvelope } from 'react-icons/fa';
 import Layout from './components/layout/Layout';
 import Home from './pages/Home';
+import AboutPage from './pages/AboutPage';
+import ContactPage from './pages/ContactPage';
+import FAQPage from './pages/FAQPage';
 import FormationsPage from './pages/formations/FormationsPage';
 import FormationDetail from './pages/formations/FormationDetail';
 import InscriptionPage from './pages/InscriptionPage';
-import TemoignagesPage from './pages/TemoignagesPage';
 import './App.css';
 
 // Pages à créer plus tard
@@ -96,12 +98,12 @@ function App() {
       <Layout>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/faq" element={<FAQPage />} />
           <Route path="/courses" element={<FormationsPage />} />
           <Route path="/courses/:id" element={<FormationDetail />} />
           <Route path="/inscription/:id" element={<InscriptionPage />} />
-          <Route path="/temoignages" element={<TemoignagesPage />} />
-          <Route path="/contact" element={<Contact />} />
         </Routes>
       </Layout>
     </Router>

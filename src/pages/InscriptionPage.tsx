@@ -1,12 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { FaArrowLeft, FaUser, FaEnvelope, FaPhone, FaWhatsapp, FaGraduationCap, FaCalendarAlt, FaCreditCard } from 'react-icons/fa';
+import { FaArrowLeft, FaUser, FaEnvelope, FaPhone, FaGraduationCap, FaWhatsapp, FaCheckCircle, FaExclamationTriangle, FaDatabase, FaChartBar, FaCreditCard, FaCalendarAlt } from 'react-icons/fa';
 import { formations } from '../data/formations';
+import GoogleFormsIntegration from '../components/GoogleFormsIntegration';
+import StorageManager from '../utils/storageManager';
+import '../styles/components.css';
 
 const InscriptionPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
-  const [selectedLevel, setSelectedLevel] = useState<'debutant' | 'intermediaire' | 'avance'>('debutant');
+  
+  // Définir le titre de la page
+  useEffect(() => {
+    document.title = 'INSCRIPTION | ARCHYVE ACADEMY';
+  }, []);
   const [wantsCertification, setWantsCertification] = useState(false);
+  const [submissionStatus, setSubmissionStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
+  const storageManager = new StorageManager();
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -31,8 +41,7 @@ const InscriptionPage: React.FC = () => {
     );
   }
 
-  const currentLevel = formation.levels[selectedLevel];
-  const totalPrice = currentLevel.price + formation.registrationFee;
+  const totalPrice = formation.price + formation.registrationFee;
   const finalPrice = wantsCertification ? totalPrice + formation.certificationPrice : totalPrice;
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -42,36 +51,86 @@ const InscriptionPage: React.FC = () => {
     });
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setSubmissionStatus('idle');
+    setErrorMessage('');
 
-    // Préparer le message WhatsApp avec toutes les informations
-    const message = `*NOUVELLE DEMANDE D'INSCRIPTION - ARCHYVE ACADEMY*
+    // Validation des champs
+    if (!formData.firstName || !formData.lastName || !formData.email || !formData.phone) {
+      setErrorMessage('Veuillez remplir tous les champs obligatoires');
+      setSubmissionStatus('error');
+      setIsSubmitting(false);
+      return;
+    }
 
-*FORMATION:* ${formation.title}
-*NIVEAU:* ${selectedLevel.charAt(0).toUpperCase() + selectedLevel.slice(1)}
-*CERTIFICATION:* ${wantsCertification ? 'Oui' : 'Non'}
+    // Validation email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      setErrorMessage('Veuillez entrer une adresse email valide');
+      setSubmissionStatus('error');
+      setIsSubmitting(false);
+      return;
+    }
 
-*INFORMATIONS PERSONNELLES:*
-*Nom:* ${formData.firstName} ${formData.lastName}
-*Email:* ${formData.email}
-*Téléphone:* ${formData.phone}
-*Niveau d'études:* ${formData.education}
-*Expérience:* ${formData.experience}
+    // Validation téléphone
+    const phoneRegex = /^[+]?[0-9]{9,15}$/;
+    if (!phoneRegex.test(formData.phone.replace(/\s/g, ''))) {
+      setErrorMessage('Veuillez entrer un numéro de téléphone valide');
+      setSubmissionStatus('error');
+      setIsSubmitting(false);
+      return;
+    }
 
-*MOTIVATION:*
-${formData.motivation}
+    setIsSubmitting(false);
+  };
 
-*COÛT TOTAL:* ${finalPrice.toLocaleString()} FCFA
+  const handleGoogleFormsSuccess = () => {
+    setSubmissionStatus('success');
+    
+    // Sauvegarder localement pour suivi
+    const submissionData = {
+      fullName: `${formData.firstName} ${formData.lastName}`,
+      email: formData.email,
+      phone: formData.phone,
+      formation: formation.title,
+      level: 'Complète',
+      message: `Formation: ${formData.education}\nExpérience: ${formData.experience}\nMotivation: ${formData.motivation}\nCertification: ${wantsCertification ? 'Oui' : 'Non'}\nTotal: ${totalPrice.toLocaleString()} FCFA`
+    };
 
----
-Merci de contacter ce candidat dès que possible pour finaliser son inscription.`;
+    storageManager.saveSubmission(submissionData);
+  };
+
+  const handleGoogleFormsError = (error: string) => {
+    setSubmissionStatus('error');
+    setErrorMessage(error);
+  };
+
+  const handleWhatsAppFallback = () => {
+    // Construire le message WhatsApp
+    const message = `Bonjour, je souhaite m'inscrire à la formation ${formation.title}
+
+Informations personnelles:
+- Nom: ${formData.firstName} ${formData.lastName}
+- Email: ${formData.email}
+- Téléphone: ${formData.phone}
+- Formation: ${formation.title}
+- Durée: ${formation.duration}
+- Prix: ${formation.price.toLocaleString()} FCFA
+- Frais d'inscription: ${formation.registrationFee.toLocaleString()} FCFA
+${wantsCertification ? `- Certification: +${formation.certificationPrice.toLocaleString()} FCFA` : ''}
+- Total: ${totalPrice.toLocaleString()} FCFA
+
+Informations complémentaires:
+- Formation: ${formData.education}
+- Expérience: ${formData.experience}
+- Motivation: ${formData.motivation}
+
+Je suis intéressé(e) par cette formation et j'aimerais avoir plus d'informations sur le processus d'inscription. Merci!`;
 
     // Ouvrir WhatsApp avec le message pré-rempli
     window.open(`https://wa.me/237657029080?text=${encodeURIComponent(message)}`, '_blank');
-    
-    setIsSubmitting(false);
   };
 
   return (
@@ -99,19 +158,7 @@ Merci de contacter ce candidat dès que possible pour finaliser son inscription.
                   Détails de la formation
                 </h3>
                 <div className="space-y-3">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Niveau souhaité</label>
-                    <select
-                      value={selectedLevel}
-                      onChange={(e) => setSelectedLevel(e.target.value as any)}
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    >
-                      <option value="debutant">Débutant - {currentLevel.price.toLocaleString()} FCFA</option>
-                      <option value="intermediaire">Intermédiaire - {formation.levels.intermediaire.price.toLocaleString()} FCFA</option>
-                      <option value="avance">Avancé - {formation.levels.avance.price.toLocaleString()} FCFA</option>
-                    </select>
-                  </div>
-                  <div className="flex items-center">
+                                    <div className="flex items-center">
                     <input
                       type="checkbox"
                       id="certification"
@@ -133,8 +180,8 @@ Merci de contacter ce candidat dès que possible pour finaliser son inscription.
                 </h3>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
-                    <span>Formation ({selectedLevel}):</span>
-                    <span className="font-semibold">{currentLevel.price.toLocaleString()} FCFA</span>
+                    <span>Formation:</span>
+                    <span className="font-semibold">{formation.price.toLocaleString()} FCFA</span>
                   </div>
                   <div className="flex justify-between">
                     <span>Frais d'inscription:</span>
@@ -202,7 +249,7 @@ Merci de contacter ce candidat dès que possible pour finaliser son inscription.
                     value={formData.email}
                     onChange={handleInputChange}
                     required
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="form-input"
                     placeholder="votre@email.com"
                   />
                 </div>
@@ -215,26 +262,25 @@ Merci de contacter ce candidat dès que possible pour finaliser son inscription.
                   <input
                     type="tel"
                     name="phone"
+                    placeholder="+237 XXX XXX XXX"
                     value={formData.phone}
                     onChange={handleInputChange}
+                    className="form-input"
                     required
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder="+237 XXX XXX XXX"
                   />
                 </div>
-              </div>
 
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2 flex items-center">
-                  <FaGraduationCap className="mr-2 text-gray-400" />
-                  Niveau d'études *
-                </label>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2 flex items-center">
+                    <FaGraduationCap className="mr-2 text-gray-400" />
+                    Niveau d'études *
+                  </label>
                 <select
                   name="education"
                   value={formData.education}
                   onChange={handleInputChange}
                   required
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="form-select"
                 >
                   <option value="">Sélectionnez votre niveau</option>
                   <option value="aucun">Aucun diplôme</option>
@@ -256,7 +302,7 @@ Merci de contacter ce candidat dès que possible pour finaliser son inscription.
                   name="experience"
                   value={formData.experience}
                   onChange={handleInputChange}
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="form-select"
                 >
                   <option value="">Sélectionnez votre expérience</option>
                   <option value="aucune">Aucune expérience</option>
@@ -280,6 +326,7 @@ Merci de contacter ce candidat dès que possible pour finaliser son inscription.
                 />
               </div>
             </div>
+            </div>
 
             <div className="mt-8 bg-blue-50 p-6 rounded-lg">
               <p className="text-sm text-blue-800 mb-4">
@@ -289,7 +336,7 @@ Merci de contacter ce candidat dès que possible pour finaliser son inscription.
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full flex items-center justify-center bg-green-500 hover:bg-green-600 disabled:bg-gray-400 text-white px-8 py-4 rounded-lg font-medium transition-colors"
+                className="btn-success w-full"
               >
                 <FaWhatsapp className="mr-2" />
                 {isSubmitting ? 'En cours...' : 'Soumettre et finaliser sur WhatsApp'}

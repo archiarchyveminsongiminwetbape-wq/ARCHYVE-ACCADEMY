@@ -2,23 +2,9 @@ export interface Formation {
   id: string;
   title: string;
   description: string;
-  levels: {
-    debutant: {
-      price: number;
-      duration: string;
-      details: string[];
-    };
-    intermediaire: {
-      price: number;
-      duration: string;
-      details: string[];
-    };
-    avance: {
-      price: number;
-      duration: string;
-      details: string[];
-    };
-  };
+  price: number;
+  duration: string;
+  details: string[];
   certificationPrice: number;
   registrationFee: number;
   category: string;
@@ -30,308 +16,166 @@ export const formations: Formation[] = [
     id: 'developpement-web',
     title: 'Développement Web',
     description: 'Maîtrisez les technologies web modernes pour créer des sites et applications web dynamiques.',
-    levels: {
-      debutant: {
-        price: 25000,
-        duration: '2 mois',
-        details: [
-          'Introduction au HTML5 et CSS3',
-          'Bases de JavaScript',
-          'Responsive Design avec Flexbox et Grid',
-          'Introduction à Git et GitHub',
-          'Projet pratique: Création d\'un site vitrine'
-        ]
-      },
-      intermediaire: {
-        price: 60000,
-        duration: '3 mois',
-        details: [
-          'JavaScript avancé (ES6+)',
-          'React.js ou Vue.js',
-          'Gestion d\'état avec Redux/Vuex',
-          'API REST et requêtes HTTP',
-          'Projet: Application web complète'
-        ]
-      },
-      avance: {
-        price: 100000,
-        duration: '4 mois',
-        details: [
-          'TypeScript',
-          'Next.js ou Nuxt.js',
-          'Tests unitaires et d\'intégration',
-          'Performance et optimisation',
-          'Projet: Application Full Stack'
-        ]
-      }
-    },
-    certificationPrice: 70000,
+    price: 75000,
+    duration: '3 mois',
+    details: [
+      'HTML5 et CSS3 avancés',
+      'JavaScript moderne (ES6+)',
+      'React.js et Hooks',
+      'Gestion d\'état avec Redux',
+      'API REST et intégration backend',
+      'Responsive Design et Mobile-First',
+      'Git et version control',
+      'Tests et débogage',
+      'Performance et optimisation',
+      'Projet: Application web complète déployée'
+    ],
+    certificationPrice: 25000,
     registrationFee: 5000,
     category: 'Développement',
-    image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=600&fit=crop'
+    image: '/images/web-dev.jpg'
   },
   {
     id: 'developpement-mobile',
     title: 'Développement Mobile',
     description: 'Apprenez à créer des applications mobiles cross-plateformes avec les dernières technologies.',
-    levels: {
-      debutant: {
-        price: 25000,
-        duration: '2 mois',
-        details: [
-          'Introduction à React Native ou Flutter',
-          'Composants UI de base',
-          'Navigation entre écrans',
-          'Gestion d\'état simple',
-          'Projet: Application mobile simple'
-        ]
-      },
-      intermediaire: {
-        price: 60000,
-        duration: '3 mois',
-        details: [
-          'Navigation avancée',
-          'Gestion d\'état avancée',
-          'Accès aux fonctionnalités natives',
-          'Intégration d\'API',
-          'Projet: Application avec authentification'
-        ]
-      },
-      avance: {
-        price: 100000,
-        duration: '4 mois',
-        details: [
-          'Animations avancées',
-          'Tests et débogage',
-          'Performance et optimisation',
-          'Publication sur les stores',
-          'Projet: Application complète avec backend'
-        ]
-      }
-    },
-    certificationPrice: 70000,
+    price: 80000,
+    duration: '3 mois',
+    details: [
+      'React Native et Flutter',
+      'Composants UI et Navigation',
+      'Gestion d\'état (Redux, Provider)',
+      'Accès aux fonctionnalités natives',
+      'Intégration d\'API REST',
+      'Animations et transitions',
+      'Tests unitaires et intégration',
+      'Performance et optimisation',
+      'Publication sur App Store et Play Store',
+      'Projet: Application mobile complète'
+    ],
+    certificationPrice: 25000,
     registrationFee: 5000,
     category: 'Développement',
-    image: 'https://images.unsplash.com/photo-1512941937669-c29f6e2f2c2a?w=800&h=600&fit=crop'
+    image: '/images/developpement-mobile.jpg'
   },
   {
     id: 'data-science',
     title: 'Data Science',
     description: 'Maîtrisez l\'analyse de données et le machine learning avec Python.',
-    levels: {
-      debutant: {
-        price: 25000,
-        duration: '2 mois',
-        details: [
-          'Introduction à Python pour la data',
-          'Numpy et Pandas',
-          'Visualisation avec Matplotlib/Seaborn',
-          'Nettoyage des données',
-          'Projet: Analyse exploratoire de données'
-        ]
-      },
-      intermediaire: {
-        price: 60000,
-        duration: '3 mois',
-        details: [
-          'Statistiques pour la data science',
-          'Apprentissage automatique de base',
-          'Scikit-learn',
-          'Traitement du langage naturel',
-          'Projet: Modèle de prédiction'
-        ]
-      },
-      avance: {
-        price: 100000,
-        duration: '4 mois',
-        details: [
-          'Deep Learning avec TensorFlow/Keras',
-          'Réseaux de neurones avancés',
-          'Vision par ordinateur',
-          'Déploiement de modèles',
-          'Projet: Projet de deep learning complet'
-        ]
-      }
-    },
-    certificationPrice: 70000,
+    price: 90000,
+    duration: '4 mois',
+    details: [
+      'Python avancé pour Data Science',
+      'NumPy et Pandas pour la manipulation',
+      'Visualisation avec Matplotlib et Seaborn',
+      'Statistiques et probabilités',
+      'Machine Learning avec Scikit-learn',
+      'Deep Learning avec TensorFlow/Keras',
+      'Réseaux de neurones et CNN',
+      'Traitement du langage naturel',
+      'Vision par ordinateur',
+      'Déploiement de modèles ML',
+      'Projet: Projet complet de Data Science'
+    ],
+    certificationPrice: 30000,
     registrationFee: 5000,
     category: 'Data',
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop'
+    image: '/images/data-science.jpg'
   },
   {
     id: 'cybersecurite',
     title: 'Cybersécurité',
     description: 'Apprenez à protéger les systèmes et réseaux contre les cyberattaques.',
-    levels: {
-      debutant: {
-        price: 25000,
-        duration: '2 mois',
-        details: [
-          'Introduction à la cybersécurité',
-          'Bases des réseaux',
-          'Sécurité des systèmes d\'exploitation',
-          'Cryptographie de base',
-          'Projet: Analyse de vulnérabilités'
-        ]
-      },
-      intermediaire: {
-        price: 60000,
-        duration: '3 mois',
-        details: [
-          'Tests d\'intrusion',
-          'Sécurité des applications web',
-          'Forensique numérique',
-          'Sécurité des réseaux',
-          'Projet: Audit de sécurité'
-        ]
-      },
-      avance: {
-        price: 100000,
-        duration: '4 mois',
-        details: [
-          'Sécurité offensive avancée',
-          'Blue team/Red team',
-          'Sécurité du cloud',
-          'Gestion des incidents de sécurité',
-          'Projet: Projet de cybersécurité complet'
-        ]
-      }
-    },
-    certificationPrice: 70000,
+    price: 85000,
+    duration: '3 mois',
+    details: [
+      'Fondamentaux de la cybersécurité',
+      'Sécurité des réseaux et protocoles',
+      'Sécurité des systèmes d\'exploitation',
+      'Cryptographie et chiffrement',
+      'Tests d\'intrusion et pentesting',
+      'Sécurité des applications web',
+      'Forensique numérique',
+      'Blue Team et Red Team',
+      'Sécurité du cloud',
+      'Gestion des incidents',
+      'Projet: Audit de sécurité complet'
+    ],
+    certificationPrice: 35000,
     registrationFee: 5000,
     category: 'Sécurité',
-    image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&h=600&fit=crop'
+    image: '/images/cybersecurite.jpg'
   },
   {
     id: 'cloud-computing',
     title: 'Cloud Computing',
     description: 'Maîtrisez les services cloud avec AWS, Azure et Google Cloud Platform.',
-    levels: {
-      debutant: {
-        price: 25000,
-        duration: '2 mois',
-        details: [
-          'Introduction au cloud computing',
-          'Bases d\'AWS/Azure/GCP',
-          'Services de stockage cloud',
-          'Mise en réseau de base',
-          'Projet: Déploiement d\'une application simple'
-        ]
-      },
-      intermediaire: {
-        price: 60000,
-        duration: '3 mois',
-        details: [
-          'Services de calcul (EC2, VMs, etc.)',
-          'Bases de données cloud',
-          'Sécurité et conformité',
-          'Automatisation avec IAC',
-          'Projet: Architecture cloud complète'
-        ]
-      },
-      avance: {
-        price: 100000,
-        duration: '4 mois',
-        details: [
-          'Architecture cloud avancée',
-          'Conteneurs et orchestration',
-          'Serverless',
-          'Migration vers le cloud',
-          'Projet: Migration et optimisation cloud'
-        ]
-      }
-    },
-    certificationPrice: 70000,
+    price: 95000,
+    duration: '4 mois',
+    details: [
+      'Fondamentaux du Cloud Computing',
+      'AWS, Azure et Google Cloud Platform',
+      'Services de calcul et stockage',
+      'Bases de données cloud',
+      'Sécurité et conformité',
+      'Infrastructure as Code (Terraform)',
+      'Conteneurs (Docker) et Orchestration (Kubernetes)',
+      'Serverless et microservices',
+      'Migration vers le cloud',
+      'Optimisation des coûts',
+      'Projet: Architecture cloud complète'
+    ],
+    certificationPrice: 40000,
     registrationFee: 5000,
     category: 'Cloud',
-    image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&h=600&fit=crop'
+    image: '/images/cloud-computing.jpg'
   },
   {
     id: 'design-ui',
     title: 'Design UI/UX',
     description: 'Apprenez à créer des interfaces utilisateur attrayantes et intuitives avec les outils de design modernes.',
-    levels: {
-      debutant: {
-        price: 25000,
-        duration: '2 mois',
-        details: [
-          'Principes fondamentaux du design',
-          'Théorie des couleurs et typographie',
-          'Introduction à Figma et Adobe XD',
-          'Wireframing et prototypage simple',
-          'Projet: Design d\'une application mobile simple'
-        ]
-      },
-      intermediaire: {
-        price: 60000,
-        duration: '3 mois',
-        details: [
-          'Design systems et composants réutilisables',
-          'User research et personas',
-          'Prototypage interactif avancé',
-          'Accessibilité et normes WCAG',
-          'Projet: Design complet d\'une application web'
-        ]
-      },
-      avance: {
-        price: 100000,
-        duration: '4 mois',
-        details: [
-          'Motion design et micro-interactions',
-          'Design thinking et méthodologie agile',
-          'A/B testing et analytics',
-          'Collaboration avec les développeurs',
-          'Projet: Design system complet pour une entreprise'
-        ]
-      }
-    },
-    certificationPrice: 70000,
+    price: 70000,
+    duration: '3 mois',
+    details: [
+      'Principes fondamentaux du design',
+      'Théorie des couleurs et typographie',
+      'Figma et Adobe XD avancés',
+      'Wireframing et prototypage',
+      'Design systems et composants',
+      'User research et personas',
+      'Accessibilité (WCAG)',
+      'Motion design et animations',
+      'Design thinking',
+      'A/B testing et analytics',
+      'Projet: Design system complet'
+    ],
+    certificationPrice: 25000,
     registrationFee: 5000,
     category: 'Design',
-    image: 'https://images.unsplash.com/photo-1559028006-648e65739b28?w=800&h=600&fit=crop'
+    image: '/images/design-ui.jpg'
   },
   {
     id: 'bureautique',
     title: 'Bureautique Avancée',
     description: 'Maîtrisez les outils bureautiques essentiels pour optimiser votre productivité professionnelle.',
-    levels: {
-      debutant: {
-        price: 25000,
-        duration: '1 mois',
-        details: [
-          'Initiation à Microsoft Word',
-          'Bases de Microsoft Excel',
-          'Introduction à PowerPoint',
-          'Gestion des emails avec Outlook',
-          'Projet: Création de documents professionnels'
-        ]
-      },
-      intermediaire: {
-        price: 35000,
-        duration: '2 mois',
-        details: [
-          'Excel avancé (formules, tableaux croisés)',
-          'Word expert (mise en page, publipostage)',
-          'PowerPoint professionnel (animations, templates)',
-          'Google Workspace collaboratif',
-          'Projet: Tableau de bord et reporting'
-        ]
-      },
-      avance: {
-        price: 50000,
-        duration: '3 mois',
-        details: [
-          'Automatisation avec macros et VBA',
-          'Analyse de données avancée',
-          'Gestion de projet avec MS Project',
-          'Collaboration et partage avancé',
-          'Projet: Système de gestion complet'
-        ]
-      }
-    },
-    certificationPrice: 70000,
+    price: 45000,
+    duration: '2 mois',
+    details: [
+      'Microsoft Word avancé',
+      'Microsoft Excel expert (formules, tableaux croisés)',
+      'PowerPoint professionnel',
+      'Outlook et gestion email',
+      'Google Workspace',
+      'Automatisation avec macros et VBA',
+      'Analyse de données avancée',
+      'Gestion de projet avec MS Project',
+      'Collaboration et partage',
+      'Sécurité et protection des données',
+      'Projet: Système de gestion complet'
+    ],
+    certificationPrice: 15000,
     registrationFee: 5000,
     category: 'Bureautique',
-    image: 'https://images.unsplash.com/photo-1554224154-260325c05f55?w=800&h=600&fit=crop'
+    image: '/images/bureautique.jpg'
   }
 ];
