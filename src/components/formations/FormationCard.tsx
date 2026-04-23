@@ -10,7 +10,8 @@ interface FormationCardProps {
 }
 
 const FormationCard: React.FC<FormationCardProps> = ({ formation }) => {
-  const totalPrice = formation.price + formation.registrationFee;
+  // Le prix affiché inclut déjà la certification
+  const displayPrice = formation.price;
 
   return (
     <div className="formation-card group">
@@ -54,7 +55,7 @@ const FormationCard: React.FC<FormationCardProps> = ({ formation }) => {
             <FaMoneyBillWave className="mr-2 text-green-600" />
             <div>
               <div className="text-xs text-gray-500">Prix</div>
-              <div className="font-medium">{totalPrice.toLocaleString()} FCFA</div>
+              <div className="font-medium">{displayPrice.toLocaleString()} FCFA</div>
             </div>
           </div>
         </div>
