@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { FaArrowLeft, FaClock, FaMoneyBillWave, FaCertificate, FaWhatsapp, FaCheckCircle, FaUsers, FaLaptop, FaAward, FaEdit } from 'react-icons/fa';
+import { FaArrowLeft, FaClock, FaMoneyBillWave, FaWhatsapp, FaCheckCircle, FaUsers, FaLaptop, FaAward, FaEdit } from 'react-icons/fa';
 import { formations } from '../../data/formations';
 import '../../styles/components.css';
 
@@ -18,7 +18,6 @@ const FormationDetail: React.FC = () => {
   }, [formation]);
 
   const totalPrice = formation ? formation.price + formation.registrationFee : 0;
-  const certificationPrice = totalPrice + (formation?.certificationPrice || 0);
 
   if (!formation) {
     return (
@@ -75,18 +74,8 @@ const FormationDetail: React.FC = () => {
                 <p className="text-2xl font-bold text-green-600">{totalPrice.toLocaleString()} FCFA</p>
                 <p className="text-sm text-gray-600 mt-1">
                   Formation: {formation.price.toLocaleString()} FCFA<br />
-                  Frais: {formation.registrationFee.toLocaleString()} FCFA
-                </p>
-              </div>
-
-              <div className="bg-yellow-50 p-6 rounded-lg">
-                <div className="flex items-center mb-3">
-                  <FaCertificate className="text-yellow-600 text-2xl mr-3" />
-                  <h3 className="font-semibold text-gray-800">Avec certification</h3>
-                </div>
-                <p className="text-2xl font-bold text-yellow-600">{certificationPrice.toLocaleString()} FCFA</p>
-                <p className="text-sm text-gray-600 mt-1">
-                  +{formation.certificationPrice.toLocaleString()} FCFA
+                  Frais: {formation.registrationFee.toLocaleString()} FCFA<br />
+                  <span className="text-green-600 font-semibold">Certification incluse</span>
                 </p>
               </div>
             </div>
@@ -124,7 +113,7 @@ const FormationDetail: React.FC = () => {
                     </div>
                   </div>
                   <div className="mt-4">
-                    <span className="text-green-600 font-semibold">Même prix : {totalPrice.toLocaleString()} FCFA</span>
+                    <span className="text-green-600 font-semibold">Prix : {totalPrice.toLocaleString()} FCFA (certification incluse)</span>
                   </div>
                 </div>
 
@@ -157,7 +146,7 @@ const FormationDetail: React.FC = () => {
                     </div>
                   </div>
                   <div className="mt-4">
-                    <span className="text-orange-600 font-semibold">Même prix : {totalPrice.toLocaleString()} FCFA</span>
+                    <span className="text-orange-600 font-semibold">Prix : {totalPrice.toLocaleString()} FCFA (certification incluse)</span>
                   </div>
                 </div>
               </div>

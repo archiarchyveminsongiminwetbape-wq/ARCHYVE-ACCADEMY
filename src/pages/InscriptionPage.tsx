@@ -11,7 +11,6 @@ const InscriptionPage: React.FC = () => {
   useEffect(() => {
     document.title = 'INSCRIPTION | ARCHYVE ACADEMY';
   }, []);
-  const [wantsCertification, setWantsCertification] = useState(false);
   const [selectedMode, setSelectedMode] = useState<'online' | 'presentiel'>('online');
   const [formData, setFormData] = useState({
     firstName: '',
@@ -38,7 +37,6 @@ const InscriptionPage: React.FC = () => {
   }
 
   const totalPrice = formation.price + formation.registrationFee;
-  const finalPrice = wantsCertification ? totalPrice + formation.certificationPrice : totalPrice;
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
@@ -100,18 +98,9 @@ const InscriptionPage: React.FC = () => {
                   Détails de la formation
                 </h3>
                 <div className="space-y-3">
-                                    <div className="flex items-center">
-                    <input
-                      type="checkbox"
-                      id="certification"
-                      checked={wantsCertification}
-                      onChange={(e) => setWantsCertification(e.target.checked)}
-                      className="mr-2"
-                    />
-                    <label htmlFor="certification" className="text-sm text-gray-700">
-                      Je veux la certification (+{formation.certificationPrice.toLocaleString()} FCFA)
-                    </label>
-                  </div>
+                  <p className="text-sm text-green-600 font-semibold">
+                    ✅ La certification est incluse dans le prix de la formation
+                  </p>
                 </div>
               </div>
 
@@ -182,17 +171,12 @@ const InscriptionPage: React.FC = () => {
                     <span>Frais d'inscription:</span>
                     <span className="font-semibold">{formation.registrationFee.toLocaleString()} FCFA</span>
                   </div>
-                  {wantsCertification && (
-                    <div className="flex justify-between">
-                      <span>Certification:</span>
-                      <span className="font-semibold">{formation.certificationPrice.toLocaleString()} FCFA</span>
-                    </div>
-                  )}
                   <div className="border-t pt-2 mt-2">
                     <div className="flex justify-between font-bold text-lg">
                       <span>Total:</span>
-                      <span className="text-green-600">{finalPrice.toLocaleString()} FCFA</span>
+                      <span className="text-green-600">{totalPrice.toLocaleString()} FCFA</span>
                     </div>
+                    <p className="text-sm text-green-600 mt-1">Certification incluse</p>
                   </div>
                 </div>
               </div>
