@@ -16,7 +16,7 @@ export const formations: Formation[] = [
     id: 'developpement-web',
     title: 'Développement Web',
     description: 'Maîtrisez les technologies web modernes pour créer des sites et applications web dynamiques.',
-    price: 75000,
+    price: 78000,
     duration: '3 mois',
     details: [
       'HTML5 et CSS3 avancés',
@@ -39,7 +39,7 @@ export const formations: Formation[] = [
     id: 'developpement-mobile',
     title: 'Développement Mobile',
     description: 'Apprenez à créer des applications mobiles cross-plateformes avec les dernières technologies.',
-    price: 80000,
+    price: 83000,
     duration: '3 mois',
     details: [
       'React Native et Flutter',
@@ -62,7 +62,7 @@ export const formations: Formation[] = [
     id: 'data-science',
     title: 'Data Science',
     description: 'Maîtrisez l\'analyse de données et le machine learning avec Python.',
-    price: 90000,
+    price: 93000,
     duration: '4 mois',
     details: [
       'Python avancé pour Data Science',
@@ -86,7 +86,7 @@ export const formations: Formation[] = [
     id: 'cybersecurite',
     title: 'Cybersécurité',
     description: 'Apprenez à protéger les systèmes et réseaux contre les cyberattaques.',
-    price: 85000,
+    price: 88000,
     duration: '3 mois',
     details: [
       'Fondamentaux de la cybersécurité',
@@ -110,7 +110,7 @@ export const formations: Formation[] = [
     id: 'cloud-computing',
     title: 'Cloud Computing',
     description: 'Maîtrisez les services cloud avec AWS, Azure et Google Cloud Platform.',
-    price: 95000,
+    price: 98000,
     duration: '4 mois',
     details: [
       'Fondamentaux du Cloud Computing',
@@ -134,7 +134,7 @@ export const formations: Formation[] = [
     id: 'design-ui',
     title: 'Design UI/UX',
     description: 'Apprenez à créer des interfaces utilisateur attrayantes et intuitives avec les outils de design modernes.',
-    price: 70000,
+    price: 73000,
     duration: '3 mois',
     details: [
       'Principes fondamentaux du design',
@@ -158,7 +158,7 @@ export const formations: Formation[] = [
     id: 'bureautique',
     title: 'Bureautique Avancée',
     description: 'Maîtrisez les outils bureautiques essentiels pour optimiser votre productivité professionnelle.',
-    price: 45000,
+    price: 48000,
     duration: '2 mois',
     details: [
       'Microsoft Word avancé',
