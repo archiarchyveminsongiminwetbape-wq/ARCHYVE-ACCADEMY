@@ -111,7 +111,7 @@ const FormationCard: React.FC<FormationCardProps> = ({ formation }) => {
         <div className="bg-gray-50 p-4 rounded-lg mb-6">
           <div className="flex justify-between items-center text-sm text-gray-600">
             <span>Frais d'inscription: {formation.registrationFee.toLocaleString()} FCFA</span>
-            <span>Certification: +{formation.certificationPrice.toLocaleString()} FCFA</span>
+            <span className="text-green-600 font-semibold">Certification incluse</span>
           </div>
         </div>
 
