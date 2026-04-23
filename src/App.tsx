@@ -13,6 +13,9 @@ import LoginPage from './pages/LoginPage';
 import DashboardPage from './pages/DashboardPage';
 import AdminPage from './pages/AdminPage';
 import BlogPage from './pages/BlogPage';
+import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
+import TermsConditionsPage from './pages/TermsConditionsPage';
+import CookiesPolicyPage from './pages/CookiesPolicyPage';
 import './App.css';
 
 function App() {
@@ -29,6 +32,9 @@ function App() {
         <Route path="/inscription/:id" element={<Layout><InscriptionPage /></Layout>} />
         <Route path="/temoignages" element={<Layout><TemoignagesPage /></Layout>} />
         <Route path="/blog" element={<Layout><BlogPage /></Layout>} />
+        <Route path="/privacy" element={<Layout><PrivacyPolicyPage /></Layout>} />
+        <Route path="/terms" element={<Layout><TermsConditionsPage /></Layout>} />
+        <Route path="/cookies" element={<Layout><CookiesPolicyPage /></Layout>} />
         <Route path="/login" element={<LoginPage />} />
         
         {/* Protected Routes without Layout */}
