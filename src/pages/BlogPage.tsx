@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FaCalendarAlt, FaUser, FaTag, FaSearch, FaClock, FaArrowRight, FaFacebook, FaTwitter, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
+import { FaCalendarAlt, FaUser, FaSearch, FaClock, FaArrowRight, FaFacebook, FaTwitter, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import '../styles/components.css';
 

@@ -38,7 +38,7 @@ const Header: React.FC = () => {
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center">
           {/* Logo */}
-          <a href="#" className="flex items-center space-x-3 group">
+          <Link to="/" className="flex items-center space-x-3 group">
             <div className="relative">
               <img 
                 src="/logo.jpg" 
@@ -53,7 +53,7 @@ const Header: React.FC = () => {
               </h1>
               <p className="text-xs text-gray-600 hidden lg:block">Formation Excellence</p>
             </div>
-          </a>
+          </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-8">

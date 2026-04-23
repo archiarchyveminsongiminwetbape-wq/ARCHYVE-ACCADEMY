@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { FaGraduationCap, FaUsers, FaAward, FaBullseye, FaHandshake, FaLightbulb, FaRocket, FaCheckCircle, FaStar } from 'react-icons/fa';
+import { FaGraduationCap, FaUsers, FaAward, FaBullseye, FaHandshake, FaLightbulb, FaRocket, FaCheckCircle } from 'react-icons/fa';
 import '../styles/components.css';
 
 const AboutPage: React.FC = () => {

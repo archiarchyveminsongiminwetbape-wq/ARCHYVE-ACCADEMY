@@ -1,6 +1,5 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { FaWhatsapp, FaEnvelope } from 'react-icons/fa';
 import Layout from './components/layout/Layout';
 import Home from './pages/Home';
 import FormationsPage from './pages/formations/FormationsPage';

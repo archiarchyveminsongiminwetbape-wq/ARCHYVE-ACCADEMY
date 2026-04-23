@@ -28,7 +28,7 @@ const DashboardPage: React.FC = () => {
   const [user, setUser] = useState<any>(null);
   const [courses, setCourses] = useState<Course[]>([]);
   const [achievements, setAchievements] = useState<Achievement[]>([]);
-  const [notifications, setNotifications] = useState(3);
+  const [notifications] = useState(3);
   const navigate = useNavigate();
 
   useEffect(() => {

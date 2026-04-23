@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FaUsers, FaBook, FaChartBar, FaCog, FaSignOutAlt, FaUserGraduate, FaDollarSign, FaCalendarAlt, FaBell, FaPlus, FaEdit, FaTrash, FaEye, FaDownload, FaFilter } from 'react-icons/fa';
+import { FaUsers, FaBook, FaChartBar, FaCog, FaSignOutAlt, FaUserGraduate, FaDollarSign, FaCalendarAlt, FaBell, FaPlus, FaEdit, FaTrash, FaEye } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 import '../styles/components.css';
 
@@ -38,7 +38,7 @@ const AdminPage: React.FC = () => {
   const [students, setStudents] = useState<Student[]>([]);
   const [courses, setCourses] = useState<Course[]>([]);
   const [activeTab, setActiveTab] = useState('dashboard');
-  const [notifications, setNotifications] = useState(5);
+  const [notifications] = useState(5);
   const navigate = useNavigate();
 
   useEffect(() => {
