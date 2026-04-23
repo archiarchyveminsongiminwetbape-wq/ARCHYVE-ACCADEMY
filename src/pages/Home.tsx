@@ -1,12 +1,23 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FaLaptopCode, FaMobileAlt, FaShieldAlt, FaServer, FaPhone, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
-import OptimizedImage from '../components/OptimizedImage';
+import BackgroundCarousel from '../components/BackgroundCarousel';
 import { usePageTitle } from '../hooks/usePageTitle';
 import '../styles/components.css';
 
 const Home: React.FC = () => {
   usePageTitle('ARCHYVE ACADEMY', false);
+  
+  // Images pour le carrousel d'arrière-plan
+  const backgroundImages = [
+    '/images/web-dev.jpg',
+    '/images/developpement-mobile.jpg',
+    '/images/cloud-computing.jpg',
+    '/images/cybersecurite.jpg',
+    '/images/data-science.jpg',
+    '/images/design-ui.jpg',
+    '/images/bureautique.jpg'
+  ];
   
   const features = [
     {
@@ -36,18 +47,9 @@ const Home: React.FC = () => {
     <div className="min-h-screen pt-16">
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Background Image */}
+        {/* Background Carousel */}
         <div className="absolute inset-0 z-0">
-          <OptimizedImage 
-            src="https://images.unsplash.com/photo-1517245386807-bb14f71fc0c3"
-            alt="Formation professionnelle" 
-            className="w-full h-full object-cover"
-            width={1920}
-            height={1080}
-            priority={true}
-          />
-          {/* Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-900/90 via-blue-800/80 to-blue-900/90"></div>
+          <BackgroundCarousel images={backgroundImages} interval={6000} />
         </div>
         
         {/* Content */}
@@ -73,12 +75,12 @@ const Home: React.FC = () => {
               >
                 Découvrir Nos Formations
               </Link>
-              <a 
-                href="#about" 
+              <Link 
+                to="/about" 
                 className="btn-secondary btn-lg"
               >
                 En Savoir Plus
-              </a>
+              </Link>
             </div>
             
                       </div>
@@ -88,6 +90,33 @@ const Home: React.FC = () => {
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
           <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
             <div className="w-1 h-3 bg-white rounded-full mt-2 animate-pulse"></div>
+          </div>
+        </div>
+      </section>
+
+      {/* Statistics Section */}
+      <section className="py-16 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl font-bold text-center mb-12 text-gray-800">Nos Chiffres Clés</h2>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+              <div className="bg-white p-6 rounded-xl shadow-sm text-center">
+                <div className="text-3xl font-bold text-blue-600 mb-2">3</div>
+                <div className="text-gray-600">Formations</div>
+              </div>
+              <div className="bg-white p-6 rounded-xl shadow-sm text-center">
+                <div className="text-3xl font-bold text-green-600 mb-2">3</div>
+                <div className="text-gray-600">Niveaux</div>
+              </div>
+              <div className="bg-white p-6 rounded-xl shadow-sm text-center">
+                <div className="text-3xl font-bold text-purple-600 mb-2">95%</div>
+                <div className="text-gray-600">Satisfaction</div>
+              </div>
+              <div className="bg-white p-6 rounded-xl shadow-sm text-center">
+                <div className="text-3xl font-bold text-orange-600 mb-2">500+</div>
+                <div className="text-gray-600">Étudiants</div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

@@ -10,7 +10,8 @@ const FormationsPage: React.FC = () => {
   
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
-    const [selectedPriceRange, setSelectedPriceRange] = useState('all');
+  const [selectedPriceRange, setSelectedPriceRange] = useState('all');
+  const [selectedMode, setSelectedMode] = useState<'all' | 'online' | 'presentiel'>('all');
 
   // Filtrer les formations
   const filteredFormations = useMemo(() => {
@@ -24,6 +25,9 @@ const FormationsPage: React.FC = () => {
       
       // Filtre par niveau (toutes les formations sont maintenant complètes)
       const matchesLevel = true;
+      
+      // Filtre par mode (toutes les formations sont disponibles en ligne et présentiel)
+      const matchesMode = selectedMode === 'all' || true;
       
       // Filtre par prix
       let matchesPrice = true;
@@ -43,13 +47,14 @@ const FormationsPage: React.FC = () => {
         }
       }
       
-      return matchesSearch && matchesCategory && matchesLevel && matchesPrice;
+      return matchesSearch && matchesCategory && matchesLevel && matchesMode && matchesPrice;
     });
-  }, [searchQuery, selectedCategory, selectedPriceRange]);
+  }, [searchQuery, selectedCategory, selectedPriceRange, selectedMode]);
 
   const handleSearch = (query: string) => setSearchQuery(query);
   const handleCategoryFilter = (category: string) => setSelectedCategory(category);
-    const handlePriceFilter = (priceRange: string) => setSelectedPriceRange(priceRange);
+  const handlePriceFilter = (priceRange: string) => setSelectedPriceRange(priceRange);
+  const handleModeFilter = (mode: 'all' | 'online' | 'presentiel') => setSelectedMode(mode);
 
   return (
     <div className="py-12 bg-gray-50 min-h-screen">
@@ -86,6 +91,80 @@ const FormationsPage: React.FC = () => {
             <div className="text-3xl font-bold text-orange-600 mb-2">500+</div>
             <div className="text-gray-600">Étudiants</div>
           </div>
+        </div>
+
+        {/* Mode Selection */}
+        <div className="bg-white rounded-xl shadow-sm p-6 mb-8">
+          <h3 className="text-lg font-semibold text-gray-900 mb-4">Mode de formation</h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <button
+              onClick={() => handleModeFilter('all')}
+              className={`p-4 rounded-lg border-2 transition-all ${
+                selectedMode === 'all'
+                  ? 'border-blue-600 bg-blue-50 text-blue-700'
+                  : 'border-gray-200 hover:border-gray-300 text-gray-700'
+              }`}
+            >
+              <div className="flex items-center space-x-3">
+                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+                  <span className="text-white text-xl">🌐</span>
+                </div>
+                <div className="text-left">
+                  <h4 className="font-semibold">Tous les modes</h4>
+                  <p className="text-sm text-gray-600">Voir toutes les formations</p>
+                </div>
+              </div>
+            </button>
+            
+            <button
+              onClick={() => handleModeFilter('online')}
+              className={`p-4 rounded-lg border-2 transition-all ${
+                selectedMode === 'online'
+                  ? 'border-blue-600 bg-blue-50 text-blue-700'
+                  : 'border-gray-200 hover:border-gray-300 text-gray-700'
+              }`}
+            >
+              <div className="flex items-center space-x-3">
+                <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-teal-600 rounded-lg flex items-center justify-center">
+                  <span className="text-white text-xl">💻</span>
+                </div>
+                <div className="text-left">
+                  <h4 className="font-semibold">En ligne</h4>
+                  <p className="text-sm text-gray-600">Formation à distance</p>
+                </div>
+              </div>
+            </button>
+            
+            <button
+              onClick={() => handleModeFilter('presentiel')}
+              className={`p-4 rounded-lg border-2 transition-all ${
+                selectedMode === 'presentiel'
+                  ? 'border-blue-600 bg-blue-50 text-blue-700'
+                  : 'border-gray-200 hover:border-gray-300 text-gray-700'
+              }`}
+            >
+              <div className="flex items-center space-x-3">
+                <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-600 rounded-lg flex items-center justify-center">
+                  <span className="text-white text-xl">🏢</span>
+                </div>
+                <div className="text-left">
+                  <h4 className="font-semibold">En présentiel</h4>
+                  <p className="text-sm text-gray-600">Formation dans nos locaux</p>
+                </div>
+              </div>
+            </button>
+          </div>
+          
+          {selectedMode !== 'all' && (
+            <div className="mt-4 p-4 bg-blue-50 rounded-lg">
+              <p className="text-sm text-blue-800">
+                {selectedMode === 'online' 
+                  ? '🌐 Vous consultez les formations disponibles en ligne avec flexibilité d\'horaires.'
+                  : '🏢 Vous consultez les formations disponibles en présentiel dans nos locaux de Douala.'
+                }
+              </p>
+            </div>
+          )}
         </div>
 
         {/* Search and Filters */}

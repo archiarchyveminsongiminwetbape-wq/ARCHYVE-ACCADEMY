@@ -24,6 +24,8 @@ const Header: React.FC = () => {
     { path: '/', label: 'Accueil' },
     { path: '/courses', label: 'Formations' },
     { path: '/about', label: 'À propos' },
+    { path: '/blog', label: 'Blog' },
+    { path: '/temoignages', label: 'Témoignages' },
     { path: '/faq', label: 'FAQ' },
     { path: '/contact', label: 'Contact' },
   ];
@@ -31,41 +33,39 @@ const Header: React.FC = () => {
   
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      isScrolled ? 'bg-white shadow-lg py-2' : 'bg-white/95 backdrop-blur-sm py-4'
+      isScrolled ? 'bg-white shadow-lg py-1' : 'bg-white/95 backdrop-blur-sm py-2'
     }`}>
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-3 group">
+          <a href="#" className="flex items-center space-x-3 group">
             <div className="relative">
               <img 
                 src="/logo.jpg" 
                 alt="ARCHYVE ACADEMY" 
-                className="h-10 w-10 rounded-lg transition-transform group-hover:scale-110"
+                className="h-8 w-8 rounded-lg transition-transform group-hover:scale-110"
               />
               <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-blue-600 rounded-full animate-pulse"></div>
             </div>
             <div>
-              <h1 className="text-xl md:text-2xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors">
+              <h1 className="text-lg md:text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors">
                 ARCHYVE ACADEMY
               </h1>
-              <p className="text-xs text-gray-600 hidden md:block">Formation Excellence</p>
+              <p className="text-xs text-gray-600 hidden lg:block">Formation Excellence</p>
             </div>
-          </Link>
+          </a>
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-8">
             {navItems.map((item) => (
-              <Link
+              <a
                 key={item.path}
-                to={item.path}
-                className={`text-gray-700 hover:text-blue-600 font-medium transition-colors relative group ${
-                  location.pathname === item.path ? 'text-blue-600' : ''
-                }`}
+                href={item.path}
+                className="text-gray-700 hover:text-blue-600 font-medium transition-colors relative group"
               >
                 {item.label}
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all"></span>
-              </Link>
+              </a>
             ))}
           </nav>
 
@@ -80,7 +80,7 @@ const Header: React.FC = () => {
             </a>
             <Link
               to="/courses"
-              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full font-medium transition-all transform hover:scale-105 shadow-lg"
+              className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-1.5 rounded-full font-medium transition-all transform hover:scale-105 shadow-lg text-sm"
             >
               Découvrir
             </Link>
@@ -101,21 +101,17 @@ const Header: React.FC = () => {
 
         {/* Mobile Menu */}
         <div className={`lg:hidden transition-all duration-300 overflow-hidden ${
-          isMenuOpen ? 'max-h-96 opacity-100 mt-4' : 'max-h-0 opacity-0'
+          isMenuOpen ? 'max-h-80 opacity-100 mt-2' : 'max-h-0 opacity-0'
         }`}>
           <nav className="flex flex-col space-y-4 pb-4">
             {navItems.map((item) => (
-              <Link
+              <a
                 key={item.path}
-                to={item.path}
-                className={`text-left px-4 py-2 rounded-lg transition-colors ${
-                  location.pathname === item.path 
-                    ? 'bg-blue-50 text-blue-600 font-medium' 
-                    : 'text-gray-700 hover:bg-gray-50'
-                }`}
+                href={item.path}
+                className="text-left px-4 py-2 rounded-lg transition-colors text-gray-700 hover:bg-gray-50"
               >
                 {item.label}
-              </Link>
+              </a>
             ))}
             
             <div className="border-t pt-4 space-y-3">

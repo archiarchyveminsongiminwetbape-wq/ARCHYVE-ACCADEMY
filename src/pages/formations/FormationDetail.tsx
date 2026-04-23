@@ -91,6 +91,83 @@ const FormationDetail: React.FC = () => {
               </div>
             </div>
 
+            {/* Mode Selection Section */}
+            <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-xl mb-8">
+              <h3 className="text-xl font-bold text-gray-800 mb-6">Choisissez votre mode de formation</h3>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="bg-white p-6 rounded-lg border-2 border-green-200 hover:border-green-300 transition-colors">
+                  <div className="flex items-center mb-4">
+                    <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4">
+                      <span className="text-green-600 text-2xl">💻</span>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-900 text-lg">Formation en ligne</h4>
+                      <p className="text-sm text-gray-600">Flexibilité totale</p>
+                    </div>
+                  </div>
+                  <div className="space-y-2 text-sm text-gray-700">
+                    <div className="flex items-center">
+                      <FaCheckCircle className="text-green-500 mr-2" />
+                      <span>Cours live et enregistrements</span>
+                    </div>
+                    <div className="flex items-center">
+                      <FaCheckCircle className="text-green-500 mr-2" />
+                      <span>Accès 24/7 à la plateforme</span>
+                    </div>
+                    <div className="flex items-center">
+                      <FaCheckCircle className="text-green-500 mr-2" />
+                      <span>Support par chat et email</span>
+                    </div>
+                    <div className="flex items-center">
+                      <FaCheckCircle className="text-green-500 mr-2" />
+                      <span>Économie de frais de déplacement</span>
+                    </div>
+                  </div>
+                  <div className="mt-4">
+                    <span className="text-green-600 font-semibold">Même prix : {totalPrice.toLocaleString()} FCFA</span>
+                  </div>
+                </div>
+
+                <div className="bg-white p-6 rounded-lg border-2 border-orange-200 hover:border-orange-300 transition-colors">
+                  <div className="flex items-center mb-4">
+                    <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mr-4">
+                      <span className="text-orange-600 text-2xl">🏢</span>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-900 text-lg">Formation en présentiel</h4>
+                      <p className="text-sm text-gray-600">Dans nos locaux</p>
+                    </div>
+                  </div>
+                  <div className="space-y-2 text-sm text-gray-700">
+                    <div className="flex items-center">
+                      <FaCheckCircle className="text-orange-500 mr-2" />
+                      <span>Cours interactifs en salle</span>
+                    </div>
+                    <div className="flex items-center">
+                      <FaCheckCircle className="text-orange-500 mr-2" />
+                      <span>Contact direct avec formateur</span>
+                    </div>
+                    <div className="flex items-center">
+                      <FaCheckCircle className="text-orange-500 mr-2" />
+                      <span>Échanges avec les autres étudiants</span>
+                    </div>
+                    <div className="flex items-center">
+                      <FaCheckCircle className="text-orange-500 mr-2" />
+                      <span>Accès aux équipements du centre</span>
+                    </div>
+                  </div>
+                  <div className="mt-4">
+                    <span className="text-orange-600 font-semibold">Même prix : {totalPrice.toLocaleString()} FCFA</span>
+                  </div>
+                </div>
+              </div>
+              <div className="mt-6 p-4 bg-blue-100 rounded-lg">
+                <p className="text-sm text-blue-800">
+                  💡 <strong>Conseil :</strong> Les deux modes offrent la même qualité de formation et le même certificat. Choisissez selon votre emploi du temps et vos préférences d'apprentissage.
+                </p>
+              </div>
+            </div>
+
             <div className="grid md:grid-cols-2 gap-8 mb-8">
               <div>
                 <h3 className="text-xl font-bold text-gray-800 mb-4">Contenu de la formation</h3>

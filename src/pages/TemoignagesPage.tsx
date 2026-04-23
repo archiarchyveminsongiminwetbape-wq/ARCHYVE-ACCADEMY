@@ -16,7 +16,8 @@ const TemoignagesPage: React.FC = () => {
       annee: "2023",
       note: 5,
       texte: "Grâce à ARCHYVE Academy, j'ai pu transformer ma passion pour le code en une carrière professionnelle. Les cours pratiques et l'accompagnement des formateurs m'ont permis de décrocher un poste de développeur senior dans une startup innovante.",
-      avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face",
+      avatarColor: "blue",
+      avatarInitial: "JM",
       posteActuel: "Développeur Senior",
       entreprise: "TechInnov Cameroon"
     },
@@ -28,7 +29,8 @@ const TemoignagesPage: React.FC = () => {
       annee: "2023",
       note: 5,
       texte: "La formation en Data Science m'a ouvert les portes de l'analyse de données. J'ai particulièrement apprécié l'approche pratique avec des projets réels. Aujourd'hui, je travaille sur des projets d'IA pour une grande entreprise bancaire.",
-      avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=face",
+      avatarColor: "purple",
+      avatarInitial: "MN",
       posteActuel: "Data Analyst",
       entreprise: "Banque Internationale"
     },
@@ -40,7 +42,8 @@ const TemoignagesPage: React.FC = () => {
       annee: "2022",
       note: 5,
       texte: "La formation en cybersécurité était très complète et à la pointe des dernières technologies. Les simulations d'attaques et les exercices pratiques m'ont permis de développer des compétences recherchées sur le marché.",
-      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face",
+      avatarColor: "red",
+      avatarInitial: "AF",
       posteActuel: "Security Analyst",
       entreprise: "SecureNet Solutions"
     },
@@ -52,7 +55,8 @@ const TemoignagesPage: React.FC = () => {
       annee: "2023",
       note: 5,
       texte: "Je suis passée du marketing au design grâce à cette formation. L'apprentissage des outils comme Figma et la méthodologie design thinking m'ont permis de créer des interfaces utilisateur magnifiques et intuitives.",
-      avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face",
+      avatarColor: "pink",
+      avatarInitial: "SE",
       posteActuel: "UI/UX Designer",
       entreprise: "Creative Agency"
     },
@@ -64,7 +68,8 @@ const TemoignagesPage: React.FC = () => {
       annee: "2022",
       note: 5,
       texte: "La maîtrise d'AWS et des services cloud m'a permis d'obtenir une certification et de travailler sur des projets d'envergure internationale. La formation est très bien structurée et les formateurs sont experts.",
-      avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=face",
+      avatarColor: "green",
+      avatarInitial: "MT",
       posteActuel: "Cloud Architect",
       entreprise: "Global Tech Solutions"
     },
@@ -76,7 +81,8 @@ const TemoignagesPage: React.FC = () => {
       annee: "2023",
       note: 4,
       texte: "Étant débutante, j'appréhendais la programmation mobile. Mais grâce à la pédagogie des formateurs et aux projets progressifs, j'ai pu créer ma première application en quelques mois seulement.",
-      avatar: "https://images.unsplash.com/photo-1544725175-9a4b4d08d4f4?w=100&h=100&fit=crop&crop=face",
+      avatarColor: "orange",
+      avatarInitial: "PE",
       posteActuel: "Mobile Developer",
       entreprise: "AppStudio Cameroon"
     }
@@ -88,6 +94,18 @@ const TemoignagesPage: React.FC = () => {
     { nombre: "80%", label: "Emploi après 3 mois", icone: <FaBriefcase className="text-3xl" /> },
     { nombre: "200+", label: "Projets réalisés", icone: <FaCode className="text-3xl" /> }
   ];
+
+  const getAvatarColor = (color: string) => {
+    const colorMap: { [key: string]: string } = {
+      blue: 'bg-blue-500',
+      purple: 'bg-purple-500',
+      red: 'bg-red-500',
+      pink: 'bg-pink-500',
+      green: 'bg-green-500',
+      orange: 'bg-orange-500'
+    };
+    return colorMap[color] || 'bg-gray-500';
+  };
 
   const renderStars = (note: number) => {
     return Array.from({ length: 5 }, (_, index) => (
@@ -126,37 +144,65 @@ const TemoignagesPage: React.FC = () => {
         {/* Grille des témoignages */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
           {temoignages.map((temoignage) => (
-            <div key={temoignage.id} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
-              <div className="p-6">
-                <div className="flex items-start mb-4">
-                  <img
-                    src={temoignage.avatar}
-                    alt={temoignage.nom}
-                    className="w-16 h-16 rounded-full mr-4 object-cover"
-                  />
-                  <div className="flex-1">
-                    <h3 className="font-bold text-gray-900">{temoignage.nom}</h3>
-                    <p className="text-sm text-gray-600">{temoignage.formation} - {temoignage.niveau}</p>
-                    <div className="flex items-center mt-1">
-                      {renderStars(temoignage.note)}
+            <div key={temoignage.id} className="group bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+              {/* Header avec avatar stylisé */}
+              <div className={`bg-gradient-to-r ${getAvatarColor(temoignage.avatarColor).replace('bg-', 'from-')} to-${getAvatarColor(temoignage.avatarColor).replace('bg-', '')}-600 p-6 relative`}>
+                <div className="absolute inset-0 bg-white opacity-10"></div>
+                <div className="relative z-10">
+                  <div className="flex items-center">
+                    <div className="w-20 h-20 bg-white/20 backdrop-blur-sm rounded-full mr-4 flex items-center justify-center text-white font-bold text-2xl shadow-xl border-2 border-white/30">
+                      {temoignage.avatarInitial}
+                    </div>
+                    <div className="flex-1 text-white">
+                      <h3 className="font-bold text-lg">{temoignage.nom}</h3>
+                      <p className="text-white/90 text-sm">{temoignage.formation}</p>
+                      <div className="flex items-center mt-1">
+                        {renderStars(temoignage.note)}
+                      </div>
                     </div>
                   </div>
                 </div>
+              </div>
 
-                <div className="relative mb-4">
-                  <FaQuoteLeft className="text-blue-200 text-2xl absolute -top-2 -left-2" />
-                  <p className="text-gray-700 italic pl-6">
+              {/* Corps du témoignage */}
+              <div className="p-6">
+                <div className="relative mb-6">
+                  <FaQuoteLeft className={`text-${temoignage.avatarColor}-200 text-3xl absolute -top-1 -left-1`} />
+                  <p className="text-gray-700 italic pl-8 leading-relaxed">
                     {temoignage.texte}
                   </p>
                 </div>
 
+                {/* Informations professionnelles */}
                 <div className="border-t pt-4">
-                  <div className="text-sm text-gray-600">
-                    <div className="font-medium text-gray-900">{temoignage.posteActuel}</div>
-                    <div>{temoignage.entreprise}</div>
-                    <div className="mt-1 text-blue-600">Promotion {temoignage.annee}</div>
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="text-sm">
+                      <div className="font-semibold text-gray-900 flex items-center">
+                        <span className={`w-2 h-2 ${getAvatarColor(temoignage.avatarColor)} rounded-full mr-2`}></span>
+                        {temoignage.posteActuel}
+                      </div>
+                      <div className="text-gray-600">{temoignage.entreprise}</div>
+                    </div>
+                    <div className={`px-3 py-1 ${getAvatarColor(temoignage.avatarColor).replace('bg-', 'bg-').replace('500', '100')} text-${temoignage.avatarColor}-700 rounded-full text-xs font-medium`}>
+                      {temoignage.niveau}
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-between text-xs text-gray-500">
+                    <span className="flex items-center">
+                      <FaGraduationCap className="mr-1" />
+                      Promotion {temoignage.annee}
+                    </span>
+                    <span className="flex items-center">
+                      <FaStar className="mr-1 text-yellow-400" />
+                      {temoignage.note}/5
+                    </span>
                   </div>
                 </div>
+              </div>
+
+              {/* Badge de certification */}
+              <div className={`bg-gradient-to-r ${getAvatarColor(temoignage.avatarColor).replace('bg-', 'from-')} to-${getAvatarColor(temoignage.avatarColor).replace('bg-', '')}-600 p-2 text-center text-white text-xs font-medium`}>
+                Certifié par ARCHYVE ACADEMY
               </div>
             </div>
           ))}

@@ -1,5 +1,6 @@
 import React from 'react';
 import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaClock, FaGraduationCap, FaUsers, FaAward, FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram, FaYoutube } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
@@ -50,22 +51,22 @@ const Footer: React.FC = () => {
             <h4 className="text-lg font-semibold mb-4">Liens Rapides</h4>
             <ul className="space-y-2">
               <li>
-                <a href="/courses" className="text-gray-300 hover:text-white transition-colors">Nos Formations</a>
+                <Link to="/courses" className="text-gray-300 hover:text-white transition-colors">Nos Formations</Link>
               </li>
               <li>
-                <a href="/#about" className="text-gray-300 hover:text-white transition-colors">À Propos</a>
+                <Link to="/about" className="text-gray-300 hover:text-white transition-colors">À Propos</Link>
               </li>
               <li>
-                <a href="/#contact" className="text-gray-300 hover:text-white transition-colors">Contact</a>
+                <Link to="/contact" className="text-gray-300 hover:text-white transition-colors">Contact</Link>
               </li>
               <li>
-                <a href="/temoignages" className="text-gray-300 hover:text-white transition-colors">Témoignages</a>
+                <Link to="/temoignages" className="text-gray-300 hover:text-white transition-colors">Témoignages</Link>
               </li>
               <li>
-                <a href="/inscription" className="text-gray-300 hover:text-white transition-colors">S'inscrire</a>
+                <Link to="/inscription" className="text-gray-300 hover:text-white transition-colors">S'inscrire</Link>
               </li>
               <li>
-                <a href="/faq" className="text-gray-300 hover:text-white transition-colors">FAQ</a>
+                <Link to="/faq" className="text-gray-300 hover:text-white transition-colors">FAQ</Link>
               </li>
             </ul>
           </div>
@@ -148,15 +149,15 @@ const Footer: React.FC = () => {
             </div>
             
             <div className="flex flex-wrap gap-4 text-sm">
-              <a href="/privacy" className="text-gray-400 hover:text-white transition-colors">
+              <Link to="/privacy" className="text-gray-400 hover:text-white transition-colors">
                 Politique de Confidentialité
-              </a>
-              <a href="/terms" className="text-gray-400 hover:text-white transition-colors">
+              </Link>
+              <Link to="/terms" className="text-gray-400 hover:text-white transition-colors">
                 Conditions Générales
-              </a>
-              <a href="/cookies" className="text-gray-400 hover:text-white transition-colors">
+              </Link>
+              <Link to="/cookies" className="text-gray-400 hover:text-white transition-colors">
                 Cookies
-              </a>
+              </Link>
             </div>
           </div>
         </div>

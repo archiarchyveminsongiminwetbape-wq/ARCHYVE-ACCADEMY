@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
-import { FaGraduationCap, FaUsers, FaAward, FaBullseye, FaHandshake, FaLightbulb, FaRocket } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+import { FaGraduationCap, FaUsers, FaAward, FaBullseye, FaHandshake, FaLightbulb, FaRocket, FaCheckCircle, FaStar } from 'react-icons/fa';
 import '../styles/components.css';
 
 const AboutPage: React.FC = () => {
@@ -47,6 +48,33 @@ const AboutPage: React.FC = () => {
       </section>
 
       
+      {/* Statistics */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-4xl font-bold text-center mb-12 text-gray-800">Nos Réalisations</h2>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+              <div className="bg-gray-50 p-6 rounded-xl shadow-sm text-center">
+                <div className="text-3xl font-bold text-blue-600 mb-2">3</div>
+                <div className="text-gray-600">Formations</div>
+              </div>
+              <div className="bg-gray-50 p-6 rounded-xl shadow-sm text-center">
+                <div className="text-3xl font-bold text-green-600 mb-2">3</div>
+                <div className="text-gray-600">Niveaux</div>
+              </div>
+              <div className="bg-gray-50 p-6 rounded-xl shadow-sm text-center">
+                <div className="text-3xl font-bold text-purple-600 mb-2">95%</div>
+                <div className="text-gray-600">Satisfaction</div>
+              </div>
+              <div className="bg-gray-50 p-6 rounded-xl shadow-sm text-center">
+                <div className="text-3xl font-bold text-orange-600 mb-2">500+</div>
+                <div className="text-gray-600">Étudiants</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Notre Mission */}
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
@@ -97,9 +125,9 @@ const AboutPage: React.FC = () => {
                   des compétences concrètes à travers des projets réels et des études de cas.
                 </p>
                 <ul className="space-y-2 text-gray-600">
-                  <li> projets réels</li>
-                  <li>Études de cas industrielles</li>
-                  <li>Mise en situation professionnelle</li>
+                  <li className="flex items-center"><FaCheckCircle className="text-green-500 mr-2" />Projets réels</li>
+                  <li className="flex items-center"><FaCheckCircle className="text-green-500 mr-2" />Études de cas industrielles</li>
+                  <li className="flex items-center"><FaCheckCircle className="text-green-500 mr-2" />Mise en situation professionnelle</li>
                 </ul>
               </div>
               
@@ -110,9 +138,9 @@ const AboutPage: React.FC = () => {
                   experts et un mentorat continu tout au long de sa formation.
                 </p>
                 <ul className="space-y-2 text-gray-600">
-                  <li>Sessions de mentorat individuelles</li>
-                  <li>Feedback régulier et constructif</li>
-                  <li>Support carrière après la formation</li>
+                  <li className="flex items-center"><FaCheckCircle className="text-green-500 mr-2" />Sessions de mentorat individuelles</li>
+                  <li className="flex items-center"><FaCheckCircle className="text-green-500 mr-2" />Feedback régulier et constructif</li>
+                  <li className="flex items-center"><FaCheckCircle className="text-green-500 mr-2" />Support carrière après la formation</li>
                 </ul>
               </div>
             </div>
@@ -142,7 +170,7 @@ const AboutPage: React.FC = () => {
                 <div className="w-32 h-32 bg-green-100 rounded-full mx-auto mb-4 flex items-center justify-center">
                   <FaUsers className="text-4xl text-green-600" />
                 </div>
-                <h3 className="text-xl font-semibold mb-2">Praticiens Industry</h3>
+                <h3 className="text-xl font-semibold mb-2">Praticiens de l'Industrie</h3>
                 <p className="text-gray-600">Professionnels du secteur actifs</p>
               </div>
               <div className="text-center">
@@ -165,18 +193,18 @@ const AboutPage: React.FC = () => {
             Rejoignez-nous et transformez votre avenir professionnel
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="/courses"
-              className="bg-white text-blue-600 px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition-colors"
+            <Link
+              to="/courses"
+              className="bg-white text-blue-600 px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition-colors inline-block"
             >
               Découvrir Nos Formations
-            </a>
-            <a
-              href="/contact"
-              className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-blue-600 transition-colors"
+            </Link>
+            <Link
+              to="/contact"
+              className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-blue-600 transition-colors inline-block"
             >
               Nous Contacter
-            </a>
+            </Link>
           </div>
         </div>
       </section>

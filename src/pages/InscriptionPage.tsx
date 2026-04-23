@@ -12,6 +12,7 @@ const InscriptionPage: React.FC = () => {
     document.title = 'INSCRIPTION | ARCHYVE ACADEMY';
   }, []);
   const [wantsCertification, setWantsCertification] = useState(false);
+  const [selectedMode, setSelectedMode] = useState<'online' | 'presentiel'>('online');
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -111,6 +112,59 @@ const InscriptionPage: React.FC = () => {
                       Je veux la certification (+{formation.certificationPrice.toLocaleString()} FCFA)
                     </label>
                   </div>
+                </div>
+              </div>
+
+              {/* Mode Selection */}
+              <div className="bg-purple-50 p-6 rounded-lg">
+                <h3 className="font-semibold text-gray-800 mb-4 flex items-center">
+                  <FaCalendarAlt className="mr-2 text-purple-600" />
+                  Mode de formation
+                </h3>
+                <div className="grid grid-cols-2 gap-4">
+                  <button
+                    type="button"
+                    onClick={() => setSelectedMode('online')}
+                    className={`p-4 rounded-lg border-2 transition-all ${
+                      selectedMode === 'online'
+                        ? 'border-purple-600 bg-purple-100 text-purple-700'
+                        : 'border-gray-200 hover:border-gray-300 text-gray-700'
+                    }`}
+                  >
+                    <div className="flex flex-col items-center space-y-2">
+                      <span className="text-2xl">💻</span>
+                      <div className="text-center">
+                        <p className="font-medium">En ligne</p>
+                        <p className="text-xs">Flexibilité totale</p>
+                      </div>
+                    </div>
+                  </button>
+                  
+                  <button
+                    type="button"
+                    onClick={() => setSelectedMode('presentiel')}
+                    className={`p-4 rounded-lg border-2 transition-all ${
+                      selectedMode === 'presentiel'
+                        ? 'border-purple-600 bg-purple-100 text-purple-700'
+                        : 'border-gray-200 hover:border-gray-300 text-gray-700'
+                    }`}
+                  >
+                    <div className="flex flex-col items-center space-y-2">
+                      <span className="text-2xl">🏢</span>
+                      <div className="text-center">
+                        <p className="font-medium">Présentiel</p>
+                        <p className="text-xs">Dans nos locaux</p>
+                      </div>
+                    </div>
+                  </button>
+                </div>
+                <div className="mt-3 p-3 bg-purple-100 rounded-lg">
+                  <p className="text-sm text-purple-800">
+                    {selectedMode === 'online' 
+                      ? '🌐 Vous avez choisi la formation en ligne avec accès 24/7.'
+                      : '🏢 Vous avez choisi la formation en présentiel dans nos locaux de Douala.'
+                    }
+                  </p>
                 </div>
               </div>
 

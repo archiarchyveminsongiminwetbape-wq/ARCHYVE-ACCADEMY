@@ -82,6 +82,31 @@ const FormationCard: React.FC<FormationCardProps> = ({ formation }) => {
           </div>
         </div>
 
+        {/* Mode Availability */}
+        <div className="bg-blue-50 p-4 rounded-lg mb-6">
+          <h4 className="font-semibold text-gray-900 mb-3">Modes disponibles</h4>
+          <div className="grid grid-cols-2 gap-3">
+            <div className="flex items-center space-x-2">
+              <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                <span className="text-green-600 text-sm">💻</span>
+              </div>
+              <div>
+                <p className="text-sm font-medium text-gray-900">En ligne</p>
+                <p className="text-xs text-gray-600">Flexibilité totale</p>
+              </div>
+            </div>
+            <div className="flex items-center space-x-2">
+              <div className="w-8 h-8 bg-orange-100 rounded-full flex items-center justify-center">
+                <span className="text-orange-600 text-sm">🏢</span>
+              </div>
+              <div>
+                <p className="text-sm font-medium text-gray-900">Présentiel</p>
+                <p className="text-xs text-gray-600">Douala</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Additional Info */}
         <div className="bg-gray-50 p-4 rounded-lg mb-6">
           <div className="flex justify-between items-center text-sm text-gray-600">

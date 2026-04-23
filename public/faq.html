@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Questions fréquentes sur les formations en informatique chez ARCHYVE ACADEMY - Trouvez des réponses à vos interrogations sur nos cours de développement web, mobile, cloud et cybersécurité.">
+    <meta name="keywords" content="FAQ, questions fréquentes, formation informatique, développement web, cybersécurité, cloud computing, ARCHYVE ACADEMY, Cameroun">
+    <meta name="author" content="ARCHYVE ACADEMY">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="FAQ - Questions Fréquentes | ARCHYVE ACADEMY">
+    <meta property="og:description" content="Trouvez des réponses à vos questions sur nos formations en informatique au Cameroun.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://archyve-academy.com/faq">
+    <meta property="og:image" content="https://archyve-academy.com/logo.jpg">
+    <meta property="og:site_name" content="ARCHYVE ACADEMY">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="FAQ - Questions Fréquentes | ARCHYVE ACADEMY">
+    <meta name="twitter:description" content="Trouvez des réponses à vos questions sur nos formations en informatique.">
+    <meta name="twitter:image" content="https://archyve-academy.com/logo.jpg">
+    
+    <title>FAQ - Questions Fréquentes | ARCHYVE ACADEMY</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="/favicon.jpg">
+    
+    <!-- Styles -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #374151;
+            background-color: #f9fafb;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .faq-section {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+        
+        .faq-category {
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .faq-category:last-child {
+            border-bottom: none;
+        }
+        
+        .category-header {
+            background: #f8fafc;
+            padding: 1.5rem 2rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s ease;
+        }
+        
+        .category-header:hover {
+            background: #f1f5f9;
+        }
+        
+        .category-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #1f2937;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .category-icon {
+            color: #3b82f6;
+        }
+        
+        .toggle-icon {
+            transition: transform 0.3s ease;
+        }
+        
+        .category-header.active .toggle-icon {
+            transform: rotate(180deg);
+        }
+        
+        .faq-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .faq-content.active {
+            max-height: 2000px;
+        }
+        
+        .faq-item {
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid #f3f4f6;
+        }
+        
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+        
+        .question {
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .answer {
+            color: #6b7280;
+            line-height: 1.7;
+        }
+        
+        .back-to-site {
+            text-align: center;
+            margin: 3rem 0;
+        }
+        
+        .back-link {
+            display: inline-block;
+            background: #3b82f6;
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .back-link:hover {
+            background: #1e40af;
+            transform: translateY(-2px);
+        }
+        
+        .footer {
+            background: #1f2937;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .header p {
+                font-size: 1.1rem;
+            }
+            
+            .category-header {
+                padding: 1rem 1.5rem;
+            }
+            
+            .faq-item {
+                padding: 1rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Quelles sont les formations proposées par ARCHYVE ACADEMY?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "ARCHYVE ACADEMY propose des formations en Développement Web, Développement Mobile, Cloud Computing, Cybersécurité, Data Science et Design UI. Nos formations sont pratiques et adaptées aux besoins du marché."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Quelle est la durée des formations?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "La durée de nos formations varie de 3 à 6 mois selon le programme choisi. Nous proposons aussi des formations intensives en bootcamp."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Comment s'inscrire à une formation?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Vous pouvez vous inscrire directement via notre site web ou nous contacter par téléphone au +237 657 02 90 80 ou par WhatsApp."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Quels sont les prérequis pour vos formations?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Les prérequis varient selon la formation. La plupart de nos formations sont accessibles aux débutants motivés. Contactez-nous pour connaître les prérequis spécifiques."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Proposez-vous une certification?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Oui, toutes nos formations donnent droit à une certification reconnue par les entreprises du secteur."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Quels sont les modalités de paiement?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Nous proposons plusieurs modalités de paiement : paiement en plusieurs fois sans frais, paiement par tranche, et possibilités de financement."
+                }
+            }
+        ]
+    }
+    </script>
+
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>Questions Fréquentes</h1>
+            <p>Trouvez des réponses à vos questions sur nos formations en informatique</p>
+        </header>
+
+        <!-- FAQ Content -->
+        <div class="faq-section">
+            <!-- Catégorie: Formations -->
+            <div class="faq-category">
+                <div class="category-header" onclick="toggleCategory('formations')">
+                    <div class="category-title">
+                        <span class="category-icon">📚</span>
+                        Formations et Cours
+                    </div>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="faq-content" id="formations-content">
+                    <div class="faq-item">
+                        <div class="question">Quelles sont les formations proposées par ARCHYVE ACADEMY?</div>
+                        <div class="answer">
+                            ARCHYVE ACADEMY propose des formations spécialisées dans les domaines les plus demandés de l'informatique :
+                            <br><br>
+                            <strong>Développement Web</strong> : HTML, CSS, JavaScript, React, Node.js, PHP, etc.<br>
+                            <strong>Développement Mobile</strong> : React Native, Flutter, Swift, Kotlin<br>
+                            <strong>Cloud Computing</strong> : AWS, Azure, Google Cloud, Docker<br>
+                            <strong>Cybersécurité</strong> : Sécurité réseau, éthique hacking, protection des données<br>
+                            <strong>Data Science</strong> : Python, Machine Learning, Analyse de données<br>
+                            <strong>Design UI/UX</strong> : Figma, Adobe XD, prototypage
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="question">Quelle est la durée des formations?</div>
+                        <div class="answer">
+                            La durée de nos formations varie selon le programme :
+                            <br><br>
+                            • Formations standards : 3 à 6 mois<br>
+                            • Bootcamps intensifs : 2 à 3 mois<br>
+                            • Formations modulaires : flexible selon votre rythme<br>
+                            • Cours particuliers : sur mesure
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="question">Comment s'inscrire à une formation?</div>
+                        <div class="answer">
+                            Plusieurs modalités d'inscription sont disponibles :
+                            <br><br>
+                            <strong>En ligne</strong> : Via notre formulaire d'inscription sur le site<br>
+                            <strong>Par téléphone</strong> : +237 657 02 90 80<br>
+                            <strong>Par WhatsApp</strong> : <a href="https://wa.me/237657029080" style="color: #3b82f6;">+237 657 02 90 80</a><br>
+                            <strong>En présentiel</strong> : Dans nos locaux à Douala
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="question">Quels sont les prérequis pour vos formations?</div>
+                        <div class="answer">
+                            Les prérequis varient selon la formation choisie :
+                            <br><br>
+                            <strong>Niveau débutant</strong> : Aucun prérequis particulier, juste la motivation<br>
+                            <strong>Niveau intermédiaire</strong> : Notions de base en programmation<br>
+                            <strong>Niveau avancé</strong> : Expérience pratique recommandée<br>
+                            <strong>Matériel</strong> : Ordinateur avec connexion internet stable
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Catégorie: Financement -->
+            <div class="faq-category">
+                <div class="category-header" onclick="toggleCategory('financement')">
+                    <div class="category-title">
+                        <span class="category-icon">💰</span>
+                        Financement et Paiement
+                    </div>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="faq-content" id="financement-content">
+                    <div class="faq-item">
+                        <div class="question">Quels sont les modalités de paiement?</div>
+                        <div class="answer">
+                            Nous offrons plusieurs solutions pour faciliter votre paiement :
+                            <br><br>
+                            • <strong>Paiement en plusieurs fois</strong> : Sans frais supplémentaires<br>
+                            • <strong>Paiement par tranche</strong> : Échelonné selon votre convenance<br>
+                            • <strong>Financement tiers</strong> : Partenariats avec des organismes de financement<br>
+                            • <strong>Bourses disponibles</strong> : Sous conditions de ressources
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="question">Proposez-vous des réductions?</div>
+                        <div class="answer">
+                            Oui, plusieurs avantages sont disponibles :
+                            <br><br>
+                            • <strong>Paiement anticipé</strong> : Réduction de 10%<br>
+                            • <strong>Inscription groupe</strong> : Réduction jusqu'à 20% (3+ personnes)<br>
+                            • <strong>Étudiants</strong> : Tarif préférentiel sur présentation de votre carte étudiant<br>
+                            • <strong>Remise militaire</strong> : Réduction spéciale
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="question">Les frais sont-ils inclus dans le prix?</div>
+                        <div class="answer">
+                            Notre transparence est totale :
+                            <br><br>
+                            • <strong>Frais d'inscription</strong> : Inclus dans le prix affiché<br>
+                            • <strong>Frais de certification</strong> : Inclus (sauf optionnel)<br>
+                            • <strong>Support pédagogique</strong> : Inclus tout au long de la formation<br>
+                            • <strong>Aucun frais caché</strong> : Garanti
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Catégorie: Après Formation -->
+            <div class="faq-category">
+                <div class="category-header" onclick="toggleCategory('apres')">
+                    <div class="category-title">
+                        <span class="category-icon">🎓</span>
+                        Après la Formation
+                    </div>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="faq-content" id="apres-content">
+                    <div class="faq-item">
+                        <div class="question">Quelle certification obtient-on?</div>
+                        <div class="answer">
+                            Toutes nos formations donnent droit à :
+                            <br><br>
+                            • <strong>Certificat ARCHYVE ACADEMY</strong> : Reconnu par les entreprises partenaires<br>
+                            • <strong>Attestation de formation</strong> : Valide pour tous les dispositifs publics<br>
+                            • <strong>Portfolio de projets</strong> : Réalisations concrètes<br>
+                            • <strong>Lettre de recommandation</strong> : Sur demande
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="question">Proposez-vous une aide à l'emploi?</div>
+                        <div class="answer">
+                            Oui, notre accompagnement continue :
+                            <br><br>
+                            • <strong>Atelier CV</strong> : Optimisation de votre CV<br>
+                            • <strong>Simulation d'entretien</strong> : Préparation technique<br>
+                            • <strong>Réseau d'entreprises</strong> : Accès à nos partenaires recruteurs<br>
+                            • <strong>Garantie d'emploi</strong> : 80% de nos diplômés trouvent un emploi dans 6 mois
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="question">Que faire si je ne suis pas satisfait?</div>
+                        <div class="answer">
+                            Votre satisfaction est notre priorité :
+                            <br><br>
+                            • <strong>Période d'essai</strong> : 14 jours satisfait ou remboursé<br>
+                            • <strong>Changement de formation</strong> : Possible sans frais (sous conditions)<br>
+                            • <strong>Support continu</strong> : Accès à vie pour les questions<br>
+                            • <strong>Formation complémentaire</strong> : Si nécessaire pour atteindre vos objectifs
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Catégorie: Technique -->
+            <div class="faq-category">
+                <div class="category-header" onclick="toggleCategory('technique')">
+                    <div class="category-title">
+                        <span class="category-icon">⚙️</span>
+                        Support Technique
+                    </div>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="faq-content" id="technique-content">
+                    <div class="faq-item">
+                        <div class="question">Quel matériel est nécessaire?</div>
+                        <div class="answer">
+                            Configuration minimale recommandée :
+                            <br><br>
+                            • <strong>Ordinateur</strong> : 4GB RAM minimum, 2GHz processeur<br>
+                            • <strong>Connexion internet</strong> : 4G minimum recommandée<br>
+                            • <strong>Logiciels</strong> : Navigateur web moderne, VS Code (gratuit)<br>
+                            • <strong>Optionnel</strong> : Double écran pour meilleure productivité
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="question">Les cours sont-ils en ligne ou en présentiel?</div>
+                        <div class="answer">
+                            Nous offrons les deux modalités :
+                            <br><br>
+                            • <strong>Formation en ligne</strong> : Cours live et enregistrements, accès 24/7<br>
+                            • <strong>Formation hybride</strong> : Mix de cours en ligne et sessions présentielles<br>
+                            • <strong>Formation présentiel</strong> : Dans nos locaux à Douala<br>
+                            • <strong>Flexibilité</strong> : Changez de modalité selon vos disponibilités
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="question">Comment accéder au contenu après la formation?</div>
+                        <div class="answer">
+                            L'accès à vie est inclus :
+                            <br><br>
+                            • <strong>Vidéos des cours</strong> : Disponibles 24/7<br>
+                            • <strong>Support de formateurs</strong> : 6 mois après la formation<br>
+                            • <strong>Mises à jour</strong> : Contenu actualisé régulièrement<br>
+                            • <strong>Communauté</strong> : Accès au réseau des anciens étudiants
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Back to Site -->
+        <div class="back-to-site">
+            <a href="/" class="back-link">← Retour au site ARCHYVE ACADEMY</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 ARCHYVE ACADEMY. Tous droits réservés.</p>
+    </footer>
+
+    <script>
+        function toggleCategory(categoryId) {
+            const content = document.getElementById(categoryId + '-content');
+            const header = content.previousElementSibling;
+            const allContents = document.querySelectorAll('.faq-content');
+            const allHeaders = document.querySelectorAll('.category-header');
+            
+            // Close all other categories
+            allContents.forEach(item => {
+                if (item !== content) {
+                    item.classList.remove('active');
+                }
+            });
+            
+            allHeaders.forEach(item => {
+                if (item !== header) {
+                    item.classList.remove('active');
+                }
+            });
+            
+            // Toggle current category
+            content.classList.toggle('active');
+            header.classList.toggle('active');
+        }
+        
+        // Open first category by default
+        document.addEventListener('DOMContentLoaded', function() {
+            toggleCategory('formations');
+        });
+    </script>
+</body>
+</html>
