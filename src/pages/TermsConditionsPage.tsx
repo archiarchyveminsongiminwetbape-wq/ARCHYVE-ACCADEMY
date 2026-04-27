@@ -159,7 +159,7 @@ const TermsConditionsPage: React.FC = () => {
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-3">Procédure</h3>
                     <ol className="list-decimal list-inside space-y-2">
-                      <li>Envoyer une demande écrite à : contact@archyve-academy.com</li>
+                      <li>Envoyer une demande écrite à : contactarchyve-academy@proton.me</li>
                       <li>Fournir les justificatifs nécessaires</li>
                       <li>Le remboursement sera effectué sous 15 jours ouvrables</li>
                       <li>Les frais de transfert bancaire sont à la charge de l'étudiant</li>

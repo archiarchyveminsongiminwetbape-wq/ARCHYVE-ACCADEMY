@@ -223,10 +223,10 @@ const CookiesPolicyPage: React.FC = () => {
                   Pour toute question sur notre politique de cookies ou pour exercer vos droits :
                 </p>
                 <div className="space-y-2 text-gray-700">
-                  <p><strong>Email :</strong> privacy@archyve-academy.com</p>
+                  <p><strong>Email :</strong> contactarchyve-academy@proton.me</p>
                   <p><strong>Téléphone :</strong> +237 657 02 90 80</p>
                   <p><strong>Formulaire de contact :</strong> Disponible sur notre site</p>
-                  <p><strong>DPO (Délégué Protection Données) :</strong> dpo@archyve-academy.com</p>
+                  <p><strong>DPO (Délégué Protection Données) :</strong> dpoarchyve-academy@proton.me</p>
                 </div>
               </div>
             </section>

@@ -71,8 +71,8 @@ const ContactPage: React.FC = () => {
     {
       icon: <FaEnvelope className="text-2xl text-purple-600" />,
       title: 'Email',
-      content: 'info@archyve-academy.com',
-      action: 'mailto:info@archyve-academy.com'
+      content: 'infoarchyve-academy@proton.me',
+      action: 'mailto:infoarchyve-academy@proton.me'
     },
     {
       icon: <FaMapMarkerAlt className="text-2xl text-red-600" />,

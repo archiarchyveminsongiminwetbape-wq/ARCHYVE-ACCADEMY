@@ -80,8 +80,8 @@ const Footer: React.FC = () => {
               <div className="flex items-center">
                 <FaEnvelope className="text-green-400 mr-3" />
                 <div>
-                  <p className="text-gray-300">contact@archyve-academy.com</p>
-                  <p className="text-gray-300">info@archyve-academy.com</p>
+                  <p className="text-gray-300">contactarchyve-academy@proton.me</p>
+                  <p className="text-gray-300">infoarchyve-academy@proton.me</p>
                 </div>
               </div>
               

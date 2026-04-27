@@ -159,7 +159,7 @@ const PrivacyPolicyPage: React.FC = () => {
                   vous pouvez nous contacter :
                 </p>
                 <div className="space-y-2 text-gray-700">
-                  <p><strong>Email :</strong> privacy@archyve-academy.com</p>
+                  <p><strong>Email :</strong> contactarchyve-academy@proton.me</p>
                   <p><strong>Téléphone :</strong> +237 657 02 90 80</p>
                   <p><strong>Adresse :</strong> Douala, Cameroun</p>
                 </div>

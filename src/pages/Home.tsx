@@ -284,8 +284,8 @@ const Home: React.FC = () => {
                     </div>
                     <div>
                       <h4 className="font-bold text-lg">Email</h4>
-                      <p className="text-blue-200">contact@archyve-academy.com</p>
-                      <p className="text-blue-200">info@archyve-academy.com</p>
+                      <p className="text-blue-200">contactarchyve-academy@proton.me</p>
+                      <p className="text-blue-200">infoarchyve-academy@proton.me</p>
                     </div>
                   </div>
                 </div>
