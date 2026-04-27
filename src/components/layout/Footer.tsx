@@ -37,7 +37,7 @@ const Footer: React.FC = () => {
               <a href="https://linkedin.com/company/archyve-academy" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-blue-700 hover:bg-blue-800 rounded-full flex items-center justify-center transition-colors">
                 <FaLinkedinIn className="text-white" />
               </a>
-              <a href="https://instagram.com/archyveacademy" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-pink-600 hover:bg-pink-700 rounded-full flex items-center justify-center transition-colors">
+              <a href="https://www.instagram.com/archyveacademy?igsh=cjd3d2gybGUzdjRi&utm_source=qr" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-pink-600 hover:bg-pink-700 rounded-full flex items-center justify-center transition-colors">
                 <FaInstagram className="text-white" />
               </a>
               <a href="https://youtube.com/@archyveacademy" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-red-600 hover:bg-red-700 rounded-full flex items-center justify-center transition-colors">
