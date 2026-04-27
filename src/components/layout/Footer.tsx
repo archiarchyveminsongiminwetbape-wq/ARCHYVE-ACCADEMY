@@ -28,7 +28,7 @@ const Footer: React.FC = () => {
             
 
             <div className="flex space-x-4">
-              <a href="https://facebook.com/archyveacademy" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-blue-600 hover:bg-blue-700 rounded-full flex items-center justify-center transition-colors">
+              <a href="https://www.facebook.com/share/1ERsimc5Bh/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-blue-600 hover:bg-blue-700 rounded-full flex items-center justify-center transition-colors">
                 <FaFacebookF className="text-white" />
               </a>
               <a href="https://twitter.com/archyveacademy" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-blue-400 hover:bg-blue-500 rounded-full flex items-center justify-center transition-colors">
