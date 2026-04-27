@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaClock, FaGraduationCap, FaUsers, FaAward, FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram, FaYoutube } from 'react-icons/fa';
+import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaClock, FaGraduationCap, FaUsers, FaAward, FaFacebookF, FaTiktok, FaLinkedinIn, FaInstagram, FaYoutube } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 const Footer: React.FC = () => {
@@ -31,8 +31,8 @@ const Footer: React.FC = () => {
               <a href="https://www.facebook.com/share/1ERsimc5Bh/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-blue-600 hover:bg-blue-700 rounded-full flex items-center justify-center transition-colors">
                 <FaFacebookF className="text-white" />
               </a>
-              <a href="https://twitter.com/archyveacademy" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-blue-400 hover:bg-blue-500 rounded-full flex items-center justify-center transition-colors">
-                <FaTwitter className="text-white" />
+              <a href="http://www.tiktok.com/@archyveacademy" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-black hover:bg-gray-800 rounded-full flex items-center justify-center transition-colors">
+                <FaTiktok className="text-white" />
               </a>
               <a href="https://linkedin.com/company/archyve-academy" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-blue-700 hover:bg-blue-800 rounded-full flex items-center justify-center transition-colors">
                 <FaLinkedinIn className="text-white" />
